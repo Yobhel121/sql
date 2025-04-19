@@ -1,0 +1,1 @@
+select * from ods.jst_qm_orders_info
