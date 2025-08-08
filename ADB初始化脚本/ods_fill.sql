@@ -138,3 +138,23 @@ CREATE TABLE ods.fill_ly_supply_price (
     case_specification varchar(50) COMMENT '箱规',
     dt                 date COMMENT '分区日期'
 )COMMENT='乐友商品供货价明细';
+
+CREATE TABLE ods.fill_bud_fin_import_items
+(
+    biz_day             date COMMENT '日期',
+    shop_id             varchar(100) COMMENT '店铺ID',
+    business_cate       varchar(100) COMMENT '业务分类',
+    expense_center_code varchar(100) COMMENT '费用中心编码',
+    expense_center      varchar(100) COMMENT '费用中心',
+    budget_subject_code varchar(100) COMMENT '预算科目编码',
+    budget_subject      varchar(100) COMMENT '预算科目',
+    value               decimal(10, 2) COMMENT '数值',
+    summary             varchar(100) COMMENT '摘要(报销单)',
+    remarks             varchar(100) COMMENT '备注(来源)',
+    category            varchar(100) COMMENT '分类',
+    mk_order_num        varchar(100) COMMENT '每刻单号',
+    applicant           varchar(100) COMMENT '报销人',
+    allocation_logic    varchar(100) COMMENT '分摊逻辑',
+    data_type           varchar(100) COMMENT '台账管报',
+    dt                  date COMMENT '分区字段'
+) COMMENT ='台账补录数据';

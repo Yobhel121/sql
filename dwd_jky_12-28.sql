@@ -605,3 +605,6 @@ with tmp as (
 select * from tmp where share_favourable_after_fee_js = 0
 
 ;
+
+
+

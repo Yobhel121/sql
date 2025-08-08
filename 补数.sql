@@ -119,3 +119,9 @@ show create table dwd.dwd_trd_rpa_tb_tm_living_sale;
 
 
 show create table rpa_data.jd_autarky_return_order;
+
+
+truncate ods.rpa_jd_autarky_product_performance;
+insert OVERWRITE ods.rpa_jd_autarky_product_performance select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.jd_autarky_product_performance;
+
+

@@ -2479,10 +2479,10 @@ from rpa_data.jky_business_log;
 
 show create table ods.jky_business_log;
 # step1
-ALTER TABLE ods.jky_qm_trades_fullinfo partitions 365;
-ALTER TABLE ods.jky_qm_trades_fullinfo STORAGE_POLICY='MIXED' HOT_PARTITION_COUNT=7;
+ALTER TABLE ods.jky_erp_storage_goodsdocout_v2_goodsdocdetail partitions 30;
+ALTER TABLE ods.jky_erp_storage_goodsdocout_v2_goodsdocdetail STORAGE_POLICY='MIXED' HOT_PARTITION_COUNT=7;
 # step2
-BUILD TABLE ods.jky_qm_trades_fullinfo;
+BUILD TABLE ods.jky_erp_storage_goodsdocout_v2_goodsdocdetail;
 # 查看进度
 SELECT table_name, schema_name, status
 FROM INFORMATION_SCHEMA.KEPLER_META_BUILD_TASK
