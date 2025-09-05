@@ -19,6 +19,7 @@ insert OVERWRITE ods.rpa_feishu_leyou_pos_data select *,DATE_FORMAT(DATE_SUB(cre
 insert OVERWRITE ods.rpa_jd_autarky_consumer_overview select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.jd_autarky_consumer_overview;
 insert OVERWRITE ods.rpa_jd_autarky_flow select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.jd_autarky_flow;
 insert OVERWRITE ods.rpa_jd_autarky_jzt_promotion select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.jd_autarky_jzt_promotion;
+insert OVERWRITE ods.rpa_jd_performance_product select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.jd_performance_product;
 insert OVERWRITE ods.rpa_jd_autarky_product select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.jd_autarky_product;
 insert OVERWRITE ods.rpa_jd_autarky_product_key_idx select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.jd_autarky_product_key_idx;
 insert OVERWRITE ods.rpa_jd_autarky_product_list select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.jd_autarky_product_list;
@@ -104,6 +105,7 @@ insert OVERWRITE ods.rpa_xhs_spotlight_account_flow select *,DATE_FORMAT(DATE_SU
 insert OVERWRITE ods.rpa_hzw_king_promotion select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.hzw_king_promotion;
 insert OVERWRITE ods.ods_yy_dialogue_records select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.yy_dialogue_records;
 insert OVERWRITE ods.rpa_syyz_order_details select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.syyz_order_details;
+insert OVERWRITE ods.tb_plan_scenarios select *,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.tb_plan_scenarios;
 
 
 insert OVERWRITE ods.rpa_hzw_king_return_order select id,return_order_number,order_number,application_time,after_sales_requirements,SKUID,product_name,order_quantity,requested_return_quantity,actual_return_quantity,requested_exchange_quantity,payment_amount,refund_amount,shipping_fee,return_order_status,return_reason,tracking_number,courier_company,shop_id,platform_name,created_by,created_at,update_by,updated_at,DATE_FORMAT(DATE_SUB(created_at, INTERVAL 1 DAY), '%Y%m%d') from rpa_data.hzw_king_return_order;

@@ -18,7 +18,7 @@ CREATE TABLE rpa_config.`filed_mapping` (
 /*+REDISTRIBUTE_TABLE_WRITES=true*/
 insert into rpa_config.filed_mapping(rpa_route, table_name, column_name,type_name,column_comment,date_type,data_length)
 select
-    'com.mysql.jdbc.PacketTooBigException:' as rpa_route,
+    'com.jeecg.jdbc.PacketTooBigException:' as rpa_route,
     TABLE_NAME as table_name,
     COLUMN_NAME as column_name,
     TYPE_NAME as type_name,
@@ -32,7 +32,7 @@ where TABLE_SCHEMA = 'rpa_data' and column_name not in ('id','created_by','creat
 
 create table rpa_config.tmp_filed_mapping as
 select
-    'com.mysql.jdbc.PacketTooBigException:' as rpa_route,
+    'com.jeecg.jdbc.PacketTooBigException:' as rpa_route,
     TABLE_NAME as table_name,
     COLUMN_NAME as column_name,
     TYPE_NAME as type_name,
@@ -78,7 +78,7 @@ select * from rpa_data.tm_inventory_performance where created_by = 'rpa_ddl';
 
 show create table rpa_data.tb_promotion_report;
 
-select distinct table_name from rpa_config.tmp_filed_mapping where rpa_route = 'com.mysql.jdbc.PacketTooBigException:';
+select distinct table_name from rpa_config.tmp_filed_mapping where rpa_route = 'com.jeecg.jdbc.PacketTooBigException:';
 
 # [{"data_name":"万相台无界版-账户-账户明细-优惠券花费明细"},{"data_name":"万相台无界版-账户-账户明细-专款交易明细"}]
 # [{"data_name":"万相台无界版-账户-账户明细-优惠券花费明细"},{"data_name":"万相台无界版-账户-账户明细-专款交易明细"}]
