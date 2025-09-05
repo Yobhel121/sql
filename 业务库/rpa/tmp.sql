@@ -74,7 +74,7 @@ from rpa_config.filed_mapping;
 select * from tmp_filed_mapping where column_name in ('id','created_by','created_at','updated_by','updated_at');
 
 
-select * from rpa_data.tm_inventory_performance where created_by = 'rpa_ddl';
+select * from rpa_data.tm_inventory_performance where created_by = 'rpa';
 
 show create table rpa_data.tb_promotion_report;
 

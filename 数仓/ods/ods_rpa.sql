@@ -1,5 +1,5 @@
 # *********************************** 抖音平台 ***********************************
-CREATE TABLE rpa_dy_product_constitute
+CREATE TABLE ods.rpa_dy_product_constitute
 (
     id                     bigint       NOT NULL AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                varchar(100) NOT NULL COMMENT '店铺id',
@@ -20,7 +20,7 @@ CREATE TABLE rpa_dy_product_constitute
 VALUE
 (dt) COMMENT ='抖音-商品构成';
 
-CREATE TABLE rpa_dy_business_overview
+CREATE TABLE ods.rpa_dy_business_overview
 (
     id                     bigint       NOT NULL AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                varchar(100) NOT NULL COMMENT '平台id，及店铺id，推广id',
@@ -48,7 +48,7 @@ CREATE TABLE rpa_dy_business_overview
 VALUE
 (dt) COMMENT ='抖音-经营概览';
 
-CREATE TABLE rpa_dy_expert_analysis
+CREATE TABLE ods.rpa_dy_expert_analysis
 (
     id                                bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                           varchar(100) NOT NULL COMMENT '店铺id',
@@ -96,7 +96,7 @@ CREATE TABLE rpa_dy_expert_analysis
 VALUE
 (dt) COMMENT ='抖音-达人分析';
 
-CREATE TABLE rpa_dy_merchant_experience_score
+CREATE TABLE ods.rpa_dy_merchant_experience_score
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                      varchar(100) NOT NULL COMMENT '店铺id',
@@ -123,7 +123,7 @@ CREATE TABLE rpa_dy_merchant_experience_score
 VALUE
 (dt) COMMENT ='抖音-商家体验分';
 
-CREATE TABLE rpa_dy_product_overview
+CREATE TABLE ods.rpa_dy_product_overview
 (
     id                                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                               varchar(100) NOT NULL COMMENT '店铺id',
@@ -187,7 +187,7 @@ CREATE TABLE rpa_dy_product_overview
 VALUE
 (dt) COMMENT ='抖音-商品概览';
 
-CREATE TABLE rpa_dy_short_video_product
+CREATE TABLE ods.rpa_dy_short_video_product
 (
     id              bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id         varchar(100) NOT NULL COMMENT '店铺id',
@@ -215,7 +215,7 @@ CREATE TABLE rpa_dy_short_video_product
 VALUE
 (dt) COMMENT ='抖音-短视频商品数据';
 
-CREATE TABLE rpa_dy_alliance_order
+CREATE TABLE ods.rpa_dy_alliance_order
 (
     id                                  bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                             varchar(100) NOT NULL COMMENT '店铺id',
@@ -275,7 +275,7 @@ CREATE TABLE rpa_dy_alliance_order
 VALUE
 (dt) COMMENT ='抖音-联盟订单明细';
 
-CREATE TABLE rpa_dy_finance_statement
+CREATE TABLE ods.rpa_dy_finance_statement
 (
     id                              bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                         date COMMENT '日期',
@@ -304,7 +304,7 @@ CREATE TABLE rpa_dy_finance_statement
 VALUE
 (dt) COMMENT ='抖音-财务流水';
 
-CREATE TABLE rpa_dy_promotion_global_tiktok
+CREATE TABLE ods.rpa_dy_promotion_global_tiktok
 (
     id                        bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     tiktok                    varchar(100) COMMENT '抖音号',
@@ -327,7 +327,7 @@ CREATE TABLE rpa_dy_promotion_global_tiktok
 VALUE
 (dt) COMMENT ='抖音-全域推广数据-抖音';
 
-CREATE TABLE rpa_dy_promotion_global_product
+CREATE TABLE ods.rpa_dy_promotion_global_product
 (
     id                              bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     product_id                      BIGINT COMMENT '商品ID',
@@ -358,7 +358,7 @@ CREATE TABLE rpa_dy_promotion_global_product
 VALUE
 (dt) COMMENT ='抖音-全域推广数据-商品';
 
-CREATE TABLE rpa_dy_promotion_product_tiktok
+CREATE TABLE ods.rpa_dy_promotion_product_tiktok
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     tiktok                       varchar(100) COMMENT '抖音号',
@@ -388,7 +388,7 @@ CREATE TABLE rpa_dy_promotion_product_tiktok
 VALUE
 (dt) COMMENT ='抖音-商品推广-抖音';
 
-CREATE TABLE rpa_dy_promotion_product_product
+CREATE TABLE ods.rpa_dy_promotion_product_product
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     product_id                   varchar(100) COMMENT '商品id',
@@ -419,7 +419,7 @@ CREATE TABLE rpa_dy_promotion_product_product
 VALUE
 (dt) COMMENT ='抖音-商品推广-商品';
 
-CREATE TABLE rpa_dy_promotion_living_tiktok
+CREATE TABLE ods.rpa_dy_promotion_living_tiktok
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     tiktok                       varchar(100) COMMENT '抖音号',
@@ -452,7 +452,7 @@ CREATE TABLE rpa_dy_promotion_living_tiktok
 VALUE
 (dt) COMMENT ='抖音-直播推广-抖音';
 
-CREATE TABLE rpa_dy_promotion_fee_consumption
+CREATE TABLE ods.rpa_dy_promotion_fee_consumption
 (
     id               bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     account          varchar(100) COMMENT '账户',
@@ -471,7 +471,7 @@ CREATE TABLE rpa_dy_promotion_fee_consumption
 VALUE
 (dt) COMMENT ='抖音-推广费消耗明细';
 
-CREATE TABLE rpa_dy_reception_volume
+CREATE TABLE ods.rpa_dy_reception_volume
 (
     id                                bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                           date COMMENT '日期',
@@ -508,7 +508,7 @@ CREATE TABLE rpa_dy_reception_volume
 VALUE
 (dt) COMMENT ='抖音-接待量';
 
-CREATE TABLE rpa_dy_cid
+CREATE TABLE ods.rpa_dy_cid
 (
     id                        bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     login_user_id             varchar(100) COMMENT '登录用户id',
@@ -542,7 +542,7 @@ VALUE
 
 # *********************************** 京东平台 ***********************************
 
-CREATE TABLE rpa_jd_jtk_bill
+CREATE TABLE ods.rpa_jd_jtk_bill
 (
     id                bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     platform_type     int COMMENT '1.京东自营 2：京东pop',
@@ -563,7 +563,7 @@ CREATE TABLE rpa_jd_jtk_bill
 VALUE
 (dt) COMMENT ='京东-京挑客-结算账单';
 
-CREATE TABLE rpa_jd_jzt_bill
+CREATE TABLE ods.rpa_jd_jzt_bill
 (
     id               bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     platform_type    int COMMENT '1.京东自营 2：京东pop',
@@ -587,7 +587,7 @@ CREATE TABLE rpa_jd_jzt_bill
 VALUE
 (dt) COMMENT ='京东-京准通-结算账单';
 
-CREATE TABLE rpa_jd_autarky_product_list
+CREATE TABLE ods.rpa_jd_autarky_product_list
 (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     day_type              int COMMENT '统计范围：1：:1天，15：15天',
@@ -616,7 +616,7 @@ CREATE TABLE rpa_jd_autarky_product_list
 VALUE
 (dt) COMMENT ='京东-自营-商品榜单';
 
-CREATE TABLE rpa_jd_autarky_product_performance
+CREATE TABLE ods.rpa_jd_autarky_product_performance
 (
     id                      bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                 varchar(100) COMMENT '店铺id',
@@ -641,7 +641,7 @@ CREATE TABLE rpa_jd_autarky_product_performance
 VALUE
 (dt) COMMENT ='京东-自营-商品业绩';
 
-CREATE TABLE rpa_jd_autarky_recharge
+CREATE TABLE ods.rpa_jd_autarky_recharge
 (
     id          bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id     varchar(100) COMMENT '店铺id',
@@ -658,7 +658,7 @@ CREATE TABLE rpa_jd_autarky_recharge
 VALUE
 (dt) COMMENT ='京东-自营-充值数据';
 
-CREATE TABLE rpa_jd_autarky_trade
+CREATE TABLE ods.rpa_jd_autarky_trade
 (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id               varchar(100) COMMENT '店铺id',
@@ -681,7 +681,7 @@ CREATE TABLE rpa_jd_autarky_trade
 VALUE
 (dt) COMMENT ='京东-自营-交易概况';
 
-CREATE TABLE rpa_jd_autarky_product
+CREATE TABLE ods.rpa_jd_autarky_product
 (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id               varchar(100) COMMENT '店铺id',
@@ -717,7 +717,7 @@ CREATE TABLE rpa_jd_autarky_product
 VALUE
 (dt) COMMENT ='京东-自营-商品明细';
 
-CREATE TABLE rpa_jd_autarky_product_stock
+CREATE TABLE ods.rpa_jd_autarky_product_stock
 (
     id                            bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                       varchar(100) COMMENT '店铺id',
@@ -843,7 +843,7 @@ CREATE TABLE rpa_jd_autarky_product_stock
 VALUE
 (dt) COMMENT ='京东-自营-商品库存表';
 
-CREATE TABLE rpa_jd_autarky_consumer_overview
+CREATE TABLE ods.rpa_jd_autarky_consumer_overview
 (
     id                             bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                        varchar(100) COMMENT '店铺id',
@@ -865,7 +865,7 @@ CREATE TABLE rpa_jd_autarky_consumer_overview
 VALUE
 (dt) COMMENT ='京东-自营-消费者总览';
 
-CREATE TABLE rpa_jd_autarky_return_order
+CREATE TABLE ods.rpa_jd_autarky_return_order
 (
     id                      bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                 varchar(100) COMMENT '店铺id',
@@ -896,7 +896,7 @@ CREATE TABLE rpa_jd_autarky_return_order
 VALUE
 (dt) COMMENT ='京东-自营-返款订单明细';
 
-CREATE TABLE rpa_jd_jtk_product_order
+CREATE TABLE ods.rpa_jd_jtk_product_order
 (
     id                      bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                 varchar(100) COMMENT '店铺id',
@@ -925,7 +925,7 @@ CREATE TABLE rpa_jd_jtk_product_order
 VALUE
 (dt) COMMENT ='京东-京挑客-下单订单明细';
 
-CREATE TABLE rpa_jd_autarky_jzt_promotion
+CREATE TABLE ods.rpa_jd_autarky_jzt_promotion
 (
     id                 bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id            varchar(100) COMMENT '店铺id',
@@ -945,7 +945,7 @@ CREATE TABLE rpa_jd_autarky_jzt_promotion
 VALUE
 (dt) COMMENT ='京东-自营-京准通-推广费';
 
-CREATE TABLE rpa_jd_autarky_product_key_idx
+CREATE TABLE ods.rpa_jd_autarky_product_key_idx
 (
     id                 bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day            date COMMENT '日期',
@@ -967,7 +967,7 @@ CREATE TABLE rpa_jd_autarky_product_key_idx
 VALUE
 (dt) COMMENT ='京东-自营-商品对比-关键指标';
 
-CREATE TABLE rpa_jd_autarky_flow
+CREATE TABLE ods.rpa_jd_autarky_flow
 (
     id                            bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                       date COMMENT '日期',
@@ -1000,7 +1000,7 @@ CREATE TABLE rpa_jd_autarky_flow
 VALUE
 (dt) COMMENT ='京东-自营-商品对比-流量来源';
 
-CREATE TABLE rpa_jd_pop_core_idx
+CREATE TABLE ods.rpa_jd_pop_core_idx
 (
     id               bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day          date COMMENT '日期',
@@ -1025,7 +1025,7 @@ CREATE TABLE rpa_jd_pop_core_idx
 VALUE
 (dt) COMMENT ='京东-POP-竞品对比-核心指标';
 
-CREATE TABLE rpa_jd_pop_entry_source
+CREATE TABLE ods.rpa_jd_pop_entry_source
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                      date COMMENT '日期',
@@ -1053,7 +1053,7 @@ CREATE TABLE rpa_jd_pop_entry_source
 VALUE
 (dt) COMMENT ='京东-POP-竞品对比-入店来源';
 
-CREATE TABLE rpa_jd_pop_outbound
+CREATE TABLE ods.rpa_jd_pop_outbound
 (
     id                                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                               date COMMENT '日期',
@@ -1099,7 +1099,7 @@ CREATE TABLE rpa_jd_pop_outbound
 VALUE
 (dt) COMMENT ='京东-POP-出库明细表';
 
-CREATE TABLE rpa_jd_pop_stock
+CREATE TABLE ods.rpa_jd_pop_stock
 (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day               date COMMENT '日期',
@@ -1135,7 +1135,7 @@ VALUE
 
 # *********************************** 天猫平台 ***********************************
 
-CREATE TABLE rpa_tm_inventory_performance
+CREATE TABLE ods.rpa_tm_inventory_performance
 (
     id                                     bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                                date COMMENT '日期',
@@ -1189,7 +1189,7 @@ CREATE TABLE rpa_tm_inventory_performance
 VALUE
 (dt) COMMENT ='天猫-供应链-库存分析';
 
-CREATE TABLE rpa_tm_core_idx
+CREATE TABLE ods.rpa_tm_core_idx
 (
     id                 bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day            date COMMENT '日期',
@@ -1212,7 +1212,7 @@ CREATE TABLE rpa_tm_core_idx
 VALUE
 (dt) COMMENT ='天猫-竞品-核心指标';
 
-CREATE TABLE rpa_tm_flow
+CREATE TABLE ods.rpa_tm_flow
 (
     id                            bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                       date COMMENT '日期',
@@ -1234,7 +1234,7 @@ CREATE TABLE rpa_tm_flow
 VALUE
 (dt) COMMENT ='天猫-竞品-流量分析';
 
-CREATE TABLE rpa_tm_actual_inventory
+CREATE TABLE ods.rpa_tm_actual_inventory
 (
     id                               bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                          varchar(100) COMMENT '店铺id',
@@ -1290,7 +1290,7 @@ CREATE TABLE rpa_tm_actual_inventory
 VALUE
 (dt) COMMENT ='天猫-库存-实时库存';
 
-CREATE TABLE rpa_tm_inventory_trans
+CREATE TABLE ods.rpa_tm_inventory_trans
 (
     id                                bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                           varchar(100) COMMENT '店铺id',
@@ -1340,7 +1340,7 @@ CREATE TABLE rpa_tm_inventory_trans
 VALUE
 (dt) COMMENT ='天猫-库存进销存台账';
 
-CREATE TABLE rpa_tm_promotion_fee
+CREATE TABLE ods.rpa_tm_promotion_fee
 (
     id                   bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id              varchar(100) COMMENT '店铺id',
@@ -1363,7 +1363,7 @@ CREATE TABLE rpa_tm_promotion_fee
 VALUE
 (dt) COMMENT ='天猫-猫超推广费';
 
-CREATE TABLE rpa_tm_account_fee
+CREATE TABLE ods.rpa_tm_account_fee
 (
     id                   bigint AUTO_INCREMENT COMMENT '编号',
     record_id            bigint COMMENT '记录编号',
@@ -1384,7 +1384,7 @@ CREATE TABLE rpa_tm_account_fee
 VALUE
 (dt) COMMENT ='天猫-账户明细';
 
-CREATE TABLE rpa_tm_promotion_report
+CREATE TABLE ods.rpa_tm_promotion_report
 (
     id                               bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                          varchar(100) COMMENT '店铺id',
@@ -1445,7 +1445,7 @@ CREATE TABLE rpa_tm_promotion_report
 VALUE
 (dt) COMMENT ='天猫-直通车-单元报表-单元列表';
 
-CREATE TABLE rpa_tm_promotion_performance
+CREATE TABLE ods.rpa_tm_promotion_performance
 (
     id                         bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                    varchar(100) COMMENT '店铺id',
@@ -1474,7 +1474,7 @@ CREATE TABLE rpa_tm_promotion_performance
 VALUE
 (dt) COMMENT ='天猫-推广数据';
 
-CREATE TABLE rpa_tm_business_overview
+CREATE TABLE ods.rpa_tm_business_overview
 (
     id                  bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id             varchar(100) COMMENT '店铺id',
@@ -1498,7 +1498,7 @@ CREATE TABLE rpa_tm_business_overview
 VALUE
 (dt) COMMENT ='天猫-经营概览';
 
-CREATE TABLE rpa_tm_product
+CREATE TABLE ods.rpa_tm_product
 (
     id                                  bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                             varchar(100) COMMENT '店铺id',
@@ -1573,7 +1573,7 @@ CREATE TABLE rpa_tm_product
 VALUE
 (dt) COMMENT ='天猫-商品信息';
 
-CREATE TABLE rpa_tm_living_sale
+CREATE TABLE ods.rpa_tm_living_sale
 (
     id                         bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                    varchar(100) COMMENT '店铺id',
@@ -1606,7 +1606,7 @@ VALUE
 
 # *********************************** 淘宝平台 ***********************************
 
-CREATE TABLE rpa_tb_trans_log
+CREATE TABLE ods.rpa_tb_trans_log
 (
     id              bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id         varchar(100) COMMENT '店铺id',
@@ -1628,7 +1628,7 @@ CREATE TABLE rpa_tb_trans_log
 VALUE
 (dt) COMMENT ='淘宝-交易流水表';
 
-CREATE TABLE rpa_tb_cold_product
+CREATE TABLE ods.rpa_tb_cold_product
 (
     id                     bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                date COMMENT '日期',
@@ -1647,7 +1647,7 @@ CREATE TABLE rpa_tb_cold_product
 VALUE
 (dt) COMMENT ='淘宝-冷链产品';
 
-CREATE TABLE rpa_tb_unpaid_order
+CREATE TABLE ods.rpa_tb_unpaid_order
 (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id               varchar(100) COMMENT '店铺id',
@@ -1677,7 +1677,7 @@ CREATE TABLE rpa_tb_unpaid_order
 VALUE
 (dt) COMMENT ='淘宝-未出账订单';
 
-CREATE TABLE rpa_tb_core_idx
+CREATE TABLE ods.rpa_tb_core_idx
 (
     id                  bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day             date COMMENT '日期',
@@ -1708,7 +1708,7 @@ CREATE TABLE rpa_tb_core_idx
 VALUE
 (dt) COMMENT ='淘宝-生意参谋-关键指标';
 
-CREATE TABLE rpa_tb_entry_source
+CREATE TABLE ods.rpa_tb_entry_source
 (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day               date COMMENT '日期',
@@ -1737,7 +1737,7 @@ CREATE TABLE rpa_tb_entry_source
 VALUE
 (dt) COMMENT ='淘宝-入店来源';
 
-CREATE TABLE rpa_tb_cate_shop_gold
+CREATE TABLE ods.rpa_tb_cate_shop_gold
 (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day               date COMMENT '日期',
@@ -1759,7 +1759,7 @@ CREATE TABLE rpa_tb_cate_shop_gold
 VALUE
 (dt) COMMENT ='淘宝-品类购物金';
 
-CREATE TABLE rpa_tb_tm_operate_window
+CREATE TABLE ods.rpa_tb_tm_operate_window
 (
     id                                     bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                                date COMMENT '日期',
@@ -1793,7 +1793,7 @@ CREATE TABLE rpa_tb_tm_operate_window
 VALUE
 (dt) COMMENT ='淘宝-天猫运营视窗(废弃)';
 
-CREATE TABLE rpa_tb_operate_window
+CREATE TABLE ods.rpa_tb_operate_window
 (
     id                              bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                         date COMMENT '日期',
@@ -1830,7 +1830,7 @@ CREATE TABLE rpa_tb_operate_window
 VALUE
 (dt) COMMENT ='淘宝-运营视窗表';
 
-CREATE TABLE rpa_tb_account_fee
+CREATE TABLE ods.rpa_tb_account_fee
 (
     id                  bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id             varchar(100) COMMENT '店铺id',
@@ -1851,7 +1851,7 @@ CREATE TABLE rpa_tb_account_fee
 VALUE
 (dt) COMMENT ='淘宝-账户明细';
 
-CREATE TABLE rpa_tb_cps_order
+CREATE TABLE ods.rpa_tb_cps_order
 (
     id                          bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                     varchar(100) COMMENT '店铺id',
@@ -1884,7 +1884,7 @@ CREATE TABLE rpa_tb_cps_order
 VALUE
 (dt) COMMENT ='淘宝-cps订单明细';
 
-CREATE TABLE rpa_tb_cps_account_fee
+CREATE TABLE ods.rpa_tb_cps_account_fee
 (
     id             bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day        date COMMENT '日期',
@@ -1901,7 +1901,7 @@ CREATE TABLE rpa_tb_cps_account_fee
 VALUE
 (dt) COMMENT ='淘宝-cps账户明细';
 
-CREATE TABLE rpa_tb_living_sale
+CREATE TABLE ods.rpa_tb_living_sale
 (
     id                     bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                date COMMENT '日期',
@@ -1930,7 +1930,7 @@ CREATE TABLE rpa_tb_living_sale
 VALUE
 (dt) COMMENT ='淘宝-客达播';
 
-CREATE TABLE rpa_tb_tm_living_sale
+CREATE TABLE ods.rpa_tb_tm_living_sale
 (
     id                     bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                varchar(100) COMMENT '店铺id',
@@ -1961,7 +1961,7 @@ CREATE TABLE rpa_tb_tm_living_sale
 VALUE
 (dt) COMMENT ='淘宝-直播订单表现表';
 
-CREATE TABLE rpa_tb_promotion_report
+CREATE TABLE ods.rpa_tb_promotion_report
 (
     id                            bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                       date COMMENT '日期',
@@ -2055,7 +2055,7 @@ CREATE TABLE rpa_tb_promotion_report
 VALUE
 (dt) COMMENT ='淘宝-单元报表';
 
-CREATE TABLE rpa_tb_account_report
+CREATE TABLE ods.rpa_tb_account_report
 (
     id                             bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                        date COMMENT '日期',
@@ -2135,7 +2135,7 @@ CREATE TABLE rpa_tb_account_report
 VALUE
 (dt) COMMENT ='淘宝-账户报表';
 
-CREATE TABLE rpa_tb_coupon_usage
+CREATE TABLE ods.rpa_tb_coupon_usage
 (
     id             bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day        date COMMENT '记账日期',
@@ -2156,7 +2156,7 @@ CREATE TABLE rpa_tb_coupon_usage
 VALUE
 (dt) COMMENT ='淘宝-账户明细-优惠券花费明细';
 
-CREATE TABLE rpa_tb_special_trans
+CREATE TABLE ods.rpa_tb_special_trans
 (
     id                   bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id              varchar(100) COMMENT '店铺id',
@@ -2181,7 +2181,7 @@ CREATE TABLE rpa_tb_special_trans
 VALUE
 (dt) COMMENT ='淘宝-账户明细-专款现金交易明细';
 
-CREATE TABLE rpa_tb_service_metrics
+CREATE TABLE ods.rpa_tb_service_metrics
 (
     id                              bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                         varchar(100) COMMENT '店铺id',
@@ -2201,7 +2201,7 @@ CREATE TABLE rpa_tb_service_metrics
 VALUE
 (dt) COMMENT ='淘宝-售后服务指标体系';
 
-CREATE TABLE rpa_tb_assessment
+CREATE TABLE ods.rpa_tb_assessment
 (
     id                   bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id              varchar(100) COMMENT '店铺id',
@@ -2222,7 +2222,7 @@ CREATE TABLE rpa_tb_assessment
 VALUE
 (dt) COMMENT ='淘宝-考核详情';
 
-CREATE TABLE rpa_tb_experience_score
+CREATE TABLE ods.rpa_tb_experience_score
 (
     id               bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id          varchar(100) COMMENT '店铺id',
@@ -2238,7 +2238,7 @@ CREATE TABLE rpa_tb_experience_score
 VALUE
 (dt) COMMENT ='淘宝-店铺综合体验分';
 
-CREATE TABLE rpa_tb_ww_satisfaction
+CREATE TABLE ods.rpa_tb_ww_satisfaction
 (
     id                   bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id              varchar(100) COMMENT '店铺id',
@@ -2256,7 +2256,7 @@ CREATE TABLE rpa_tb_ww_satisfaction
 VALUE
 (dt) COMMENT ='淘宝-旺旺满意度';
 
-CREATE TABLE rpa_tb_cdl_product_statistics
+CREATE TABLE ods.rpa_tb_cdl_product_statistics
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                      varchar(100) COMMENT '店铺id',
@@ -2311,7 +2311,7 @@ CREATE TABLE rpa_tb_cdl_product_statistics
 VALUE
 (dt) COMMENT ='淘宝-馋哆啦商品排行';
 
-CREATE TABLE rpa_tb_settle_overview
+CREATE TABLE ods.rpa_tb_settle_overview
 (
     id                 bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id            varchar(100) COMMENT '店铺id',
@@ -2330,7 +2330,7 @@ VALUE
 (dt) COMMENT ='淘宝-定向计划报表-概览数据';
 
 # *********************************** 其它平台 ***********************************
-CREATE TABLE rpa_feishu_haiziwang_pos_data
+CREATE TABLE ods.rpa_feishu_haiziwang_pos_data
 (
     month_index           varchar(10) NOT NULL COMMENT '唯一键',
     performance_shop_code bigint COMMENT '业绩考核门店编码',
@@ -2358,7 +2358,7 @@ CREATE TABLE rpa_feishu_haiziwang_pos_data
 VALUE
 (dt) COMMENT ='飞书_孩子王POS数据';
 
-CREATE TABLE rpa_feishu_leyou_pos_data
+CREATE TABLE ods.rpa_feishu_leyou_pos_data
 (
     month_index                   varchar(10) NOT NULL COMMENT '唯一键',
     month_string                  varchar(50) COMMENT '月',
@@ -2388,7 +2388,7 @@ CREATE TABLE rpa_feishu_leyou_pos_data
 VALUE
 (dt) COMMENT ='飞书_乐友POS数据';
 
-CREATE TABLE rpa_ks_aftersales_bulk_export
+CREATE TABLE ods.rpa_ks_aftersales_bulk_export
 (
     id                         bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                    varchar(100) COMMENT '店铺id',
@@ -2422,7 +2422,7 @@ CREATE TABLE rpa_ks_aftersales_bulk_export
 VALUE
 (dt) COMMENT ='快手售后单批量导出';
 
-CREATE TABLE rpa_ks_est_commission
+CREATE TABLE ods.rpa_ks_est_commission
 (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id               varchar(100) COMMENT '店铺id',
@@ -2449,7 +2449,7 @@ CREATE TABLE rpa_ks_est_commission
 VALUE
 (dt) COMMENT ='快手预估佣金';
 
-CREATE TABLE rpa_ks_e_niu_agent_summary_total_cost
+CREATE TABLE ods.rpa_ks_e_niu_agent_summary_total_cost
 (
     id         bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day    date COMMENT '日期',
@@ -2465,7 +2465,7 @@ CREATE TABLE rpa_ks_e_niu_agent_summary_total_cost
 VALUE
 (dt) COMMENT='磁力金牛服务商-数据概览-总花费';
 
-CREATE TABLE rpa_ks_e_niu_financial_transactions
+CREATE TABLE ods.rpa_ks_e_niu_financial_transactions
 (
     id                        bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                   date COMMENT '日期',
@@ -2501,7 +2501,7 @@ CREATE TABLE rpa_ks_e_niu_financial_transactions
 VALUE
 (dt) COMMENT ='磁力金牛-财务流水';
 
-CREATE TABLE rpa_ks_mkt_ovw_e_niu_acc_details
+CREATE TABLE ods.rpa_ks_mkt_ovw_e_niu_acc_details
 (
     id                   bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id              varchar(100) COMMENT '店铺id',
@@ -2548,7 +2548,7 @@ CREATE TABLE rpa_ks_mkt_ovw_e_niu_acc_details
 VALUE
 (dt) COMMENT ='营销总览-磁力金牛-账户明细';
 
-CREATE TABLE rpa_ks_operating_data
+CREATE TABLE ods.rpa_ks_operating_data
 (
     id                       bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                  varchar(100) COMMENT '店铺id',
@@ -2584,7 +2584,7 @@ CREATE TABLE rpa_ks_operating_data
 VALUE
 (dt) COMMENT ='快手-经营数据';
 
-CREATE TABLE rpa_ks_order_bulk_export
+CREATE TABLE ods.rpa_ks_order_bulk_export
 (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id               varchar(100) COMMENT '店铺id',
@@ -2639,7 +2639,7 @@ CREATE TABLE rpa_ks_order_bulk_export
 VALUE
 (dt) COMMENT ='快手订单批量导出';
 
-CREATE TABLE rpa_ks_short_video_prod_report
+CREATE TABLE ods.rpa_ks_short_video_prod_report
 (
     id                      bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                 varchar(100) COMMENT '店铺id',
@@ -2670,7 +2670,7 @@ CREATE TABLE rpa_ks_short_video_prod_report
 VALUE
 (dt) COMMENT ='短视频推广-商品报表';
 
-CREATE TABLE rpa_mx_ai_inventory_marketing_order
+CREATE TABLE ods.rpa_mx_ai_inventory_marketing_order
 (
     id                        bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                   varchar(100) COMMENT '店铺id',
@@ -2709,7 +2709,7 @@ CREATE TABLE rpa_mx_ai_inventory_marketing_order
 VALUE
 (dt) COMMENT ='爱库存营销费用&订单货款';
 
-CREATE TABLE rpa_mx_funds_account_transactions
+CREATE TABLE ods.rpa_mx_funds_account_transactions
 (
     id                bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id           varchar(100) COMMENT '店铺id',
@@ -2727,7 +2727,7 @@ CREATE TABLE rpa_mx_funds_account_transactions
 VALUE
 (dt) COMMENT ='梦饷家-资金-账户收支';
 
-CREATE TABLE rpa_pdd_after_sales_data
+CREATE TABLE ods.rpa_pdd_after_sales_data
 (
     id         bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day    date         NOT NULL COMMENT '日期',
@@ -2745,7 +2745,7 @@ CREATE TABLE rpa_pdd_after_sales_data
 VALUE
 (dt) COMMENT ='拼多多售后数据';
 
-CREATE TABLE rpa_pdd_after_sales_shop_star_rating
+CREATE TABLE ods.rpa_pdd_after_sales_shop_star_rating
 (
     id                   bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day              date         NOT NULL COMMENT '日期',
@@ -2763,7 +2763,7 @@ CREATE TABLE rpa_pdd_after_sales_shop_star_rating
 VALUE
 (dt) COMMENT ='拼多多售后店铺星级';
 
-CREATE TABLE rpa_pdd_ddjb_promotion_expenses
+CREATE TABLE ods.rpa_pdd_ddjb_promotion_expenses
 (
     id                     bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                date           NOT NULL COMMENT '日期',
@@ -2782,7 +2782,7 @@ CREATE TABLE rpa_pdd_ddjb_promotion_expenses
 VALUE
 (dt) COMMENT ='多多进宝推广费';
 
-CREATE TABLE rpa_pdd_operate_overview
+CREATE TABLE ods.rpa_pdd_operate_overview
 (
     id                                 bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                            date           NOT NULL COMMENT '日期',
@@ -2815,7 +2815,7 @@ CREATE TABLE rpa_pdd_operate_overview
 VALUE
 (dt) COMMENT ='拼多多经营总览';
 
-CREATE TABLE rpa_pdd_pre_sales_sales_data
+CREATE TABLE ods.rpa_pdd_pre_sales_sales_data
 (
     id                        bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                   date         NOT NULL COMMENT '日期',
@@ -2836,7 +2836,7 @@ CREATE TABLE rpa_pdd_pre_sales_sales_data
 VALUE
 (dt) COMMENT ='拼多多售前销售数据';
 
-CREATE TABLE rpa_pdd_pre_sales_service_data
+CREATE TABLE ods.rpa_pdd_pre_sales_service_data
 (
     id                               bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                          date         NOT NULL COMMENT '日期',
@@ -2861,7 +2861,7 @@ CREATE TABLE rpa_pdd_pre_sales_service_data
 VALUE
 (dt) COMMENT ='拼多多售前服务数据';
 
-CREATE TABLE rpa_pdd_pre_sales_team_conversion_rate
+CREATE TABLE ods.rpa_pdd_pre_sales_team_conversion_rate
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                      date         NOT NULL COMMENT '日期',
@@ -2896,7 +2896,7 @@ CREATE TABLE rpa_pdd_pre_sales_team_conversion_rate
 VALUE
 (dt) COMMENT ='拼多多售前团队数据(转化率)';
 
-CREATE TABLE rpa_pdd_pre_sales_team_data
+CREATE TABLE ods.rpa_pdd_pre_sales_team_data
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                      date         NOT NULL COMMENT '日期',
@@ -2931,7 +2931,7 @@ CREATE TABLE rpa_pdd_pre_sales_team_data
 VALUE
 (dt) COMMENT ='拼多多售前团队数据';
 
-CREATE TABLE rpa_pdd_promotion_expenses
+CREATE TABLE ods.rpa_pdd_promotion_expenses
 (
     id                  bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day             date           NOT NULL COMMENT '时间',
@@ -2953,7 +2953,7 @@ CREATE TABLE rpa_pdd_promotion_expenses
 VALUE
 (dt) COMMENT ='拼多多推广费用';
 
-CREATE TABLE rpa_syyz_after_sales_data
+CREATE TABLE ods.rpa_syyz_after_sales_data
 (
     id                        bigint AUTO_INCREMENT COMMENT '主键id',
     after_sale_id             varchar(50)  NOT NULL COMMENT '售后编号',
@@ -2992,7 +2992,7 @@ CREATE TABLE rpa_syyz_after_sales_data
 VALUE
 (dt) COMMENT ='私域有赞售后单';
 
-CREATE TABLE rpa_syyz_business_data_overview
+CREATE TABLE ods.rpa_syyz_business_data_overview
 (
     id                                bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                           timestamp    NOT NULL COMMENT '日期',
@@ -3028,7 +3028,7 @@ CREATE TABLE rpa_syyz_business_data_overview
 VALUE
 (dt) COMMENT ='私域有赞&线下商城经营数据概况';
 
-CREATE TABLE rpa_syyz_distribution_analysis
+CREATE TABLE ods.rpa_syyz_distribution_analysis
 (
     id                     bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                timestamp    NOT NULL COMMENT '日期',
@@ -3050,7 +3050,7 @@ CREATE TABLE rpa_syyz_distribution_analysis
 VALUE
 (dt) COMMENT ='私域有赞分销分析';
 
-CREATE TABLE rpa_syyz_procure_order
+CREATE TABLE ods.rpa_syyz_procure_order
 (
     id                             bigint AUTO_INCREMENT COMMENT '主键id',
     purchase_order_id              varchar(255) COMMENT '采购单ID',
@@ -3082,7 +3082,7 @@ CREATE TABLE rpa_syyz_procure_order
 VALUE
 (dt) COMMENT ='私域有赞采购单';
 
-CREATE TABLE rpa_syyz_sales_slip
+CREATE TABLE ods.rpa_syyz_sales_slip
 (
     id                              bigint AUTO_INCREMENT COMMENT '主键id',
     order_id                        varchar(50)  NOT NULL COMMENT '订单号',
@@ -3119,7 +3119,7 @@ CREATE TABLE rpa_syyz_sales_slip
 VALUE
 (dt) COMMENT ='私域有赞销售单';
 
-CREATE TABLE rpa_wph_data_overview
+CREATE TABLE ods.rpa_wph_data_overview
 (
     id                                          bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     biz_day                                     date COMMENT '日期',
@@ -3164,7 +3164,7 @@ CREATE TABLE rpa_wph_data_overview
 VALUE
 (dt) COMMENT ='唯品会-数据概览2.0';
 
-CREATE TABLE rpa_wph_product_details
+CREATE TABLE ods.rpa_wph_product_details
 (
     id              bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     platform_name   varchar(50) COMMENT '平台名称',
@@ -3194,7 +3194,7 @@ CREATE TABLE rpa_wph_product_details
 VALUE
 (dt) COMMENT ='唯品会_商品明细';
 
-CREATE TABLE rpa_wph_promotion_fee
+CREATE TABLE ods.rpa_wph_promotion_fee
 (
     id             bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id        varchar(255) COMMENT '店铺ID',
@@ -3216,7 +3216,7 @@ CREATE TABLE rpa_wph_promotion_fee
 VALUE
 (dt) COMMENT ='唯品会-推广费';
 
-CREATE TABLE rpa_wph_supplier_inventory_report
+CREATE TABLE ods.rpa_wph_supplier_inventory_report
 (
     id                        bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     create_by                 varchar(100) COMMENT '插入人',
@@ -3249,7 +3249,7 @@ CREATE TABLE rpa_wph_supplier_inventory_report
 VALUE
 (dt) COMMENT ='唯品会_供应商平台_进销存报表';
 
-CREATE TABLE rpa_xhs_dandelion_consumer_discipline
+CREATE TABLE ods.rpa_xhs_dandelion_consumer_discipline
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                      timestamp    NOT NULL COMMENT '投放时间',
@@ -3269,7 +3269,7 @@ CREATE TABLE rpa_xhs_dandelion_consumer_discipline
 VALUE
 (dt) COMMENT ='小红书_蒲公英_消费记录';
 
-CREATE TABLE rpa_xhs_estimated_commission_order
+CREATE TABLE ods.rpa_xhs_estimated_commission_order
 (
     id                           bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                      timestamp    NOT NULL COMMENT '支付时间',
@@ -3299,7 +3299,7 @@ CREATE TABLE rpa_xhs_estimated_commission_order
 VALUE
 (dt) COMMENT ='小红书预估佣金订单';
 
-CREATE TABLE rpa_xhs_order_inquiry
+CREATE TABLE ods.rpa_xhs_order_inquiry
 (
     id                       bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day                  timestamp COMMENT '支付时间',
@@ -3374,7 +3374,7 @@ CREATE TABLE rpa_xhs_order_inquiry
 VALUE
 (dt) COMMENT ='小红书订单查询';
 
-CREATE TABLE rpa_xhs_spotlight_account_flow
+CREATE TABLE ods.rpa_xhs_spotlight_account_flow
 (
     id              bigint AUTO_INCREMENT COMMENT '主键id',
     biz_day         timestamp    NOT NULL COMMENT '投放日期',
@@ -3398,7 +3398,7 @@ CREATE TABLE rpa_xhs_spotlight_account_flow
 VALUE
 (dt) COMMENT ='小红书_聚光_账户流水';
 
-CREATE TABLE rpa_hzw_transaction_info
+CREATE TABLE ods.rpa_hzw_transaction_info
 (
     id                         bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     date                       date NOT NULL COMMENT '日期',
@@ -3423,7 +3423,7 @@ CREATE TABLE rpa_hzw_transaction_info
     PRIMARY KEY (id, dt)
 ) COMMENT ='孩子王-交易信息';
 
-CREATE TABLE rpa_hzw_king_promotion
+CREATE TABLE ods.rpa_hzw_king_promotion
 (
     id               bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     date             timestamp    NOT NULL COMMENT '日期',
@@ -3444,7 +3444,7 @@ CREATE TABLE rpa_hzw_king_promotion
     PRIMARY KEY (id, dt)
 ) COMMENT ='孩子王-推广';
 
-CREATE TABLE rpa_hzw_king_return_order
+CREATE TABLE ods.rpa_hzw_king_return_order
 (
     id                          bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     return_order_number         varchar(50)  NOT NULL COMMENT '退单号',
@@ -3474,7 +3474,7 @@ CREATE TABLE rpa_hzw_king_return_order
     PRIMARY KEY (id, dt)
 ) COMMENT ='孩子王-退单';
 
-create table rpa_jky_shop_ref
+CREATE TABLE ods.rpa_jky_shop_ref
 (
     shop_id              varchar comment '店铺账户id',
     shop_name            varchar comment '店铺名称',
@@ -3494,7 +3494,7 @@ create table rpa_jky_shop_ref
 VALUE
 (dt) comment '吉客云店铺关联关系表';
 
-create table tmp_ks_order
+CREATE TABLE ods.tmp_ks_order
 (
     order_id      varchar comment '订单号',
     business_cate varchar comment '业务分类',
@@ -3503,7 +3503,7 @@ create table tmp_ks_order
     payment       decimal(10, 2) comment '实付款'
 ) comment '临时取数表_单号快手米粉直播间区分业务分类7.6';
 
-CREATE TABLE ods.rpa_fs_ly_pos_data (
+CREATE TABLE ods.ods.rpa_fs_ly_pos_data (
     id                    bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     performance_shop_code bigint COMMENT '业绩考核门店编码',
     performance_shop_name varchar(100) COMMENT '业绩考核门店名称',
@@ -3528,7 +3528,7 @@ CREATE TABLE ods.rpa_fs_ly_pos_data (
     PRIMARY KEY (id, dt)
 ) PARTITION BY VALUE(dt) COMMENT='飞书_乐友POS数据';
 
-CREATE TABLE rpa_syyz_order_details (
+CREATE TABLE ods.rpa_syyz_order_details (
     shop_id                             varchar(20) NOT NULL COMMENT '店铺id',
     order_id                            varchar(50) COMMENT '订单号',
     product_name                        varchar(255) COMMENT '商品名称',
@@ -3559,10 +3559,5 @@ CREATE TABLE rpa_syyz_order_details (
     dt                                    date comment '分区日期'
 ) PARTITION BY VALUE(dt) COMMENT='有赞-微商城-订单-订单查询-订单管理-分销买家订单';
 
-show create table ods.rpa_syyz_order_details;
-show create table rpa_data.syyz_order_details;
 
-select count(1) from rpa_data.syyz_order_details;
-
-select count(1) from ods.rpa_syyz_order_details;
 

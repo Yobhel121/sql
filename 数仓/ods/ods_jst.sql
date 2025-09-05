@@ -1,4 +1,4 @@
-CREATE TABLE jst_actual_receipt_batchs_info
+CREATE TABLE ods.jst_actual_receipt_batchs_info
 (
     io_id            int,
     row_id           int,
@@ -11,7 +11,7 @@ CREATE TABLE jst_actual_receipt_batchs_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_actual_receipt_info
+CREATE TABLE ods.jst_actual_receipt_info
 (
     io_id            int,
     o_id             int,
@@ -29,7 +29,7 @@ CREATE TABLE jst_actual_receipt_info
     drp_co_id        int
 );
 
-CREATE TABLE jst_actual_receipt_item_info
+CREATE TABLE ods.jst_actual_receipt_item_info
 (
     io_id            int,
     row_id           int,
@@ -44,7 +44,7 @@ CREATE TABLE jst_actual_receipt_item_info
     io_date          datetime
 );
 
-CREATE TABLE jst_category_info
+CREATE TABLE ods.jst_category_info
 (
     c_id             int COMMENT '类目id',
     parent_c_id      int COMMENT '父级类目id',
@@ -53,7 +53,7 @@ CREATE TABLE jst_category_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_combine_sku_info
+CREATE TABLE ods.jst_combine_sku_info
 (
     i_id             varchar COMMENT '组合装款式编码',
     name             varchar COMMENT '组合装商品名称',
@@ -74,7 +74,7 @@ CREATE TABLE jst_combine_sku_info
     enabled          int
 );
 
-CREATE TABLE jst_combine_sku_items
+CREATE TABLE ods.jst_combine_sku_items
 (
     sku_id           varchar COMMENT '组合装商品编码',
     row_id           int,
@@ -87,7 +87,7 @@ CREATE TABLE jst_combine_sku_items
     created          varchar COMMENT '创建时间'
 );
 
-CREATE TABLE jst_distributor_info
+CREATE TABLE ods.jst_distributor_info
 (
     drp_co_id        int,
     co_id            int,
@@ -99,7 +99,7 @@ CREATE TABLE jst_distributor_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_normal_sku_info
+CREATE TABLE ods.jst_normal_sku_info
 (
     autoid                 varchar(100),
     sku_id                 varchar COMMENT '商品编码',
@@ -155,7 +155,7 @@ CREATE TABLE jst_normal_sku_info
     last_update_time       datetime
 );
 
-CREATE TABLE jst_order_action
+CREATE TABLE ods.jst_order_action
 (
     oa_id            int,
     o_id             int,
@@ -166,7 +166,7 @@ CREATE TABLE jst_order_action
     last_update_time datetime
 );
 
-CREATE TABLE jst_other_stock_io_batch_info
+CREATE TABLE ods.jst_other_stock_io_batch_info
 (
     io_id            int,
     row_id           int,
@@ -179,7 +179,7 @@ CREATE TABLE jst_other_stock_io_batch_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_other_stock_io_info
+CREATE TABLE ods.jst_other_stock_io_info
 (
     io_id             int,
     io_date           datetime,
@@ -208,7 +208,7 @@ CREATE TABLE jst_other_stock_io_info
     last_update_time  datetime
 );
 
-CREATE TABLE jst_other_stock_io_item_info
+CREATE TABLE ods.jst_other_stock_io_item_info
 (
     io_id            int,
     row_id           int,
@@ -231,7 +231,7 @@ CREATE TABLE jst_other_stock_io_item_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_pack_inventory_snapshot
+CREATE TABLE ods.jst_pack_inventory_snapshot
 (
     id               varchar(100),
     last_update_time datetime,
@@ -252,7 +252,7 @@ CREATE TABLE jst_pack_inventory_snapshot
     yesterday        varchar(100)
 );
 
-CREATE TABLE jst_partner_info
+CREATE TABLE ods.jst_partner_info
 (
     wms_co_id        varchar COMMENT '分仓编号',
     name             varchar COMMENT '分仓名称',
@@ -264,7 +264,7 @@ CREATE TABLE jst_partner_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_partner_inventory
+CREATE TABLE ods.jst_partner_inventory
 (
     sku_id           varchar(100),
     wms_co_id        int,
@@ -288,7 +288,7 @@ CREATE TABLE jst_partner_inventory
     last_update_time datetime
 );
 
-CREATE TABLE jst_pre_stock_in
+CREATE TABLE ods.jst_pre_stock_in
 (
     po_id            int,
     merge_po_id      varchar(100),
@@ -306,7 +306,7 @@ CREATE TABLE jst_pre_stock_in
     last_update_time datetime
 );
 
-CREATE TABLE jst_pre_stock_in_item
+CREATE TABLE ods.jst_pre_stock_in_item
 (
     po_id            int,
     row_id           int,
@@ -323,7 +323,7 @@ CREATE TABLE jst_pre_stock_in_item
     last_update_time datetime
 );
 
-CREATE TABLE jst_purchase_order_info
+CREATE TABLE ods.jst_purchase_order_info
 (
     po_date          datetime,
     po_id            int,
@@ -346,7 +346,7 @@ CREATE TABLE jst_purchase_order_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_purchase_order_item_info
+CREATE TABLE ods.jst_purchase_order_item_info
 (
     po_id            int,
     row_id           int,
@@ -361,7 +361,7 @@ CREATE TABLE jst_purchase_order_item_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_pur_info
+CREATE TABLE ods.jst_pur_info
 (
     io_id            int,
     warehouse        varchar(100),
@@ -386,7 +386,7 @@ CREATE TABLE jst_pur_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_pur_info_batchs
+CREATE TABLE ods.jst_pur_info_batchs
 (
     io_id            int,
     row_id           int,
@@ -400,7 +400,7 @@ CREATE TABLE jst_pur_info_batchs
     last_update_time datetime
 );
 
-CREATE TABLE jst_pur_info_sku
+CREATE TABLE ods.jst_pur_info_sku
 (
     io_id            int,
     row_id           int,
@@ -415,7 +415,7 @@ CREATE TABLE jst_pur_info_sku
     batch_no         varchar(255)
 );
 
-CREATE TABLE jst_pur_info_sns
+CREATE TABLE ods.jst_pur_info_sns
 (
     io_id            int,
     row_id           int,
@@ -424,7 +424,7 @@ CREATE TABLE jst_pur_info_sns
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_bill_info
+CREATE TABLE ods.jst_qm_bill_info
 (
     auto_id          int,
     shop_id          int,
@@ -438,7 +438,7 @@ CREATE TABLE jst_qm_bill_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_bill_share_info
+CREATE TABLE ods.jst_qm_bill_share_info
 (
     auto_id          int,
     p_auto_id        int,
@@ -455,7 +455,7 @@ CREATE TABLE jst_qm_bill_share_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_delivery_info
+CREATE TABLE ods.jst_qm_delivery_info
 (
     io_id             int COMMENT '出库单号',
     co_id             int COMMENT '公司编号',
@@ -512,7 +512,7 @@ CREATE TABLE jst_qm_delivery_info
     ts                varchar(100)
 );
 
-CREATE TABLE jst_qm_delivery_info_batchs
+CREATE TABLE ods.jst_qm_delivery_info_batchs
 (
     io_id            int COMMENT '出库单号',
     row_id           int,
@@ -526,7 +526,7 @@ CREATE TABLE jst_qm_delivery_info_batchs
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_delivery_info_batchs_new
+CREATE TABLE ods.jst_qm_delivery_info_batchs_new
 (
     io_id            int,
     row_id           int,
@@ -540,7 +540,7 @@ CREATE TABLE jst_qm_delivery_info_batchs_new
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_delivery_info_item
+CREATE TABLE ods.jst_qm_delivery_info_item
 (
     io_id            int COMMENT '出库单号',
     row_id           int,
@@ -564,7 +564,7 @@ CREATE TABLE jst_qm_delivery_info_item
     expiration_date  datetime
 );
 
-CREATE TABLE jst_qm_delivery_info_item_new
+CREATE TABLE ods.jst_qm_delivery_info_item_new
 (
     io_id            int,
     row_id           int,
@@ -588,7 +588,7 @@ CREATE TABLE jst_qm_delivery_info_item_new
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_delivery_info_new
+CREATE TABLE ods.jst_qm_delivery_info_new
 (
     io_id             int,
     co_id             int,
@@ -645,7 +645,7 @@ CREATE TABLE jst_qm_delivery_info_new
     last_update_time  datetime
 );
 
-CREATE TABLE jst_qm_delivery_info_sns
+CREATE TABLE ods.jst_qm_delivery_info_sns
 (
     io_id            int COMMENT '出库单号',
     row_id           int,
@@ -654,7 +654,7 @@ CREATE TABLE jst_qm_delivery_info_sns
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_delivery_info_sns_new
+CREATE TABLE ods.jst_qm_delivery_info_sns_new
 (
     io_id            int,
     row_id           int,
@@ -663,7 +663,7 @@ CREATE TABLE jst_qm_delivery_info_sns_new
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_orders_info
+CREATE TABLE ods.jst_qm_orders_info
 (
     o_id                 int COMMENT 'ERP 内部订单号，唯一',
     is_cod               tinyint COMMENT '是否货到付款',
@@ -739,7 +739,7 @@ CREATE TABLE jst_qm_orders_info
     sign_time            varchar(100)
 ) COMMENT ='订单详情表';
 
-CREATE TABLE jst_qm_orders_info_payment
+CREATE TABLE ods.jst_qm_orders_info_payment
 (
     o_id             int COMMENT 'ERP 内部订单号，唯一',
     row_id           int,
@@ -753,7 +753,7 @@ CREATE TABLE jst_qm_orders_info_payment
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_orders_info_sku
+CREATE TABLE ods.jst_qm_orders_info_sku
 (
     o_id                 int COMMENT 'ERP 内部订单号，唯一',
     row_id               int,
@@ -786,7 +786,7 @@ CREATE TABLE jst_qm_orders_info_sku
     remark               varchar(100)
 );
 
-CREATE TABLE jst_qm_order_expense
+CREATE TABLE ods.jst_qm_order_expense
 (
     auto_id          int,
     p_auto_id        int,
@@ -803,7 +803,7 @@ CREATE TABLE jst_qm_order_expense
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_order_refund_batchs
+CREATE TABLE ods.jst_qm_order_refund_batchs
 (
     as_id            int COMMENT 'ERP售后单号',
     row_id           int,
@@ -816,7 +816,7 @@ CREATE TABLE jst_qm_order_refund_batchs
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_order_refund_item
+CREATE TABLE ods.jst_qm_order_refund_item
 (
     as_id            int COMMENT 'ERP售后单号',
     row_id           int,
@@ -840,7 +840,7 @@ CREATE TABLE jst_qm_order_refund_item
     defective_qty    int
 );
 
-CREATE TABLE jst_qm_order_refund_list
+CREATE TABLE ods.jst_qm_order_refund_list
 (
     as_id             int COMMENT 'ERP售后单号',
     as_date           datetime COMMENT '申请时间',
@@ -878,7 +878,7 @@ CREATE TABLE jst_qm_order_refund_list
     ts                varchar(100)
 );
 
-CREATE TABLE jst_qm_order_refund_sns
+CREATE TABLE ods.jst_qm_order_refund_sns
 (
     as_id            int,
     row_id           int,
@@ -887,7 +887,7 @@ CREATE TABLE jst_qm_order_refund_sns
     last_update_time datetime
 );
 
-CREATE TABLE jst_qm_raw_bill
+CREATE TABLE ods.jst_qm_raw_bill
 (
     id                   varchar(100),
     create_time          varchar(100),
@@ -908,7 +908,7 @@ CREATE TABLE jst_qm_raw_bill
     last_update_time     datetime
 );
 
-CREATE TABLE jst_shop_info
+CREATE TABLE ods.jst_shop_info
 (
     shop_id          varchar,
     shop_name        varchar(100),
@@ -924,7 +924,7 @@ CREATE TABLE jst_shop_info
     last_update_time datetime
 );
 
-CREATE TABLE jst_sku_invty_info
+CREATE TABLE ods.jst_sku_invty_info
 (
     sku_id           varchar COMMENT '商品编码',
     i_id             varchar COMMENT '款式编码',

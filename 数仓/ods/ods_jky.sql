@@ -2473,28 +2473,3 @@ CREATE TABLE ods.jky_business_log
 ) PARTITION BY
 VALUE
 (DATE_FORMAT(gmt_create, '%Y-%m-%d')) COMMENT='吉客云-系统日志';
-
-select *
-from rpa_data.jky_business_log;
-
-show create table ods.jky_business_log;
-# step1
-ALTER TABLE ods.jky_erp_storage_goodsdocout_v2_goodsdocdetail partitions 30;
-ALTER TABLE ods.jky_erp_storage_goodsdocout_v2_goodsdocdetail STORAGE_POLICY='MIXED' HOT_PARTITION_COUNT=7;
-# step2
-BUILD TABLE ods.jky_erp_storage_goodsdocout_v2_goodsdocdetail;
-# 查看进度
-SELECT table_name, schema_name, status
-FROM INFORMATION_SCHEMA.KEPLER_META_BUILD_TASK
-ORDER BY create_time DESC
-LIMIT 10;
-# 查看表ddl修改
-show create table ods.jky_qm_trades_fullinfo_goodsdetail;
-
-
-
-select *
-from rpa_data.tb_product_analysis;
-
-select *
-from rpa_data.tb_master_scenarios;
