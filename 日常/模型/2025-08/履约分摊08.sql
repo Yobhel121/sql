@@ -1,4 +1,4 @@
-drop table tmp.fulfillment_07;
+drop table tmp.fulfillment_08;
 create table tmp.fulfillment_07 as
 select
     flag_names  订单标记
