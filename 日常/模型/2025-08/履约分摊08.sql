@@ -96,7 +96,7 @@ from (
     select * from(
         select
             *,row_number() over (partition by trade_id order by gmt_modified desc) n from ods.jky_qm_trades_fullinfo
-        where is_delete = 0 and seller_memo not like '%测试单%' and gmt_create > date_format(date_sub('2025-09-04', 90), '%Y-%m-%d')
+        where is_delete = 0 and seller_memo not like '%测试单%' and gmt_create > date_format(date_sub('2025-09-09', 90), '%Y-%m-%d')
     )tmp where n =1
            and trade_status not in ('5010','5020','5030')
            and shop_id  not in('1723838592174621184','1726051235912319488','1695714490516406912','1739161925332304256','1799908914256478592','2240803665545987200','2083305436995192192','2069054003205801856','2164494330354370304'
@@ -105,7 +105,7 @@ from (
            and shop_name not like '%线下中心%'
            and flag_names not like '%平台发货%'
            and flag_names not like '%外部发货%'
-           and pay_time like '2025-07%'
+           and pay_time like '2025-08%'
 ) j_order
 left join(
     select
@@ -131,34 +131,41 @@ left join(
         case when b.sell_total is not null then cast(b.sell_total as decimal(10,2)) - cast(b.share_favourable_fee as decimal(10,2))  else a.share_favourable_after_fee end share_favourable_after_fee_js,
         -- 组合装分摊后金额
         cast(a.share_favourable_after_fee as decimal(10,2)) p_share_favourable_fee_js
-    from(select trade_no,gmt_create,pay_time from ods.jky_qm_trades_fullinfo where is_delete = 0 and seller_memo not like '%测试单%' and gmt_create > date_format(date_sub('2025-09-04', 90), '%Y-%m-%d') and pay_time like '2025-07%') t -- 销售单查询
-    left join(select * from ods.jky_qm_trades_fullinfo_goodsdetail where dt = '2025-09-04') a on t.trade_no = a.trade_no -- 销售单查询_货品详情
-    left join(select * from ods.jky_qm_trades_fullinfo_assembly_goodsdto where dt = '2025-09-04') b on a.trade_no = b.trade_no and a.trade_id = b.trade_id and a.sub_trade_id = b.sub_trade_id -- 销售单查询_组合装子件列表
-    left join(select * from ods.jky_storage_goodsinfo where dt = '2025-09-04' and is_delete = 0) c on nvl(b.goods_no,a.goods_no) = c.goods_no and nvl(b.barcode,a.barcode) = c.sku_barcode -- 分页查询货品信息
+    from(select trade_no,gmt_create,pay_time from ods.jky_qm_trades_fullinfo where is_delete = 0 and seller_memo not like '%测试单%' and gmt_create > date_format(date_sub('2025-09-09', 90), '%Y-%m-%d') and pay_time like '2025-08%') t -- 销售单查询
+    left join(select * from ods.jky_qm_trades_fullinfo_goodsdetail where dt = '2025-09-09') a on t.trade_no = a.trade_no -- 销售单查询_货品详情
+    left join(select * from ods.jky_qm_trades_fullinfo_assembly_goodsdto where dt = '2025-09-09') b on a.trade_no = b.trade_no and a.trade_id = b.trade_id and a.sub_trade_id = b.sub_trade_id -- 销售单查询_组合装子件列表
+    left join(select * from ods.jky_storage_goodsinfo where dt = '2025-09-09' and is_delete = 0) c on nvl(b.goods_no,a.goods_no) = c.goods_no and nvl(b.barcode,a.barcode) = c.sku_barcode -- 分页查询货品信息
     left join(
-        select product_code as goods_no,standard_cost adjustment_cost from ods.gyl_product where dt = '2025-09-04' -- 成本调整_template
+        select product_code as goods_no,standard_cost adjustment_cost from ods.gyl_product where dt = '2025-09-09' -- 成本调整_template
     )d on c.goods_no = d.goods_no
 )order_sku on j_order.trade_no = order_sku.trade_no
-left join(select * from ods.jky_sales_channel where dt = '2025-09-04') channel on j_order.shop_id = channel.channel_id -- 销售渠道查询
-left join(select * from dim.jky_storage_goodsinfo where dt = '2025-09-04' ) tmcate on order_sku.sku_id = tmcate.sku_id
+left join(select * from ods.jky_sales_channel where dt = '2025-09-09') channel on j_order.shop_id = channel.channel_id -- 销售渠道查询
+left join(select * from dim.jky_storage_goodsinfo where dt = '2025-09-09' ) tmcate on order_sku.sku_id = tmcate.sku_id
 left join(
-    select order_id,storage_fee + handling_fee as num_fulfillment, operation_fee_total + material_fee_total + express_fee_total as weight_fulfillment  from ods.gyl_order_fulfillment where dt = '2025-09-04'
+    select order_id,storage_fee + handling_fee as num_fulfillment, operation_fee_total + material_fee_total + express_fee_total as weight_fulfillment  from ods.gyl_order_fulfillment where dt = '2025-09-09'
 )fulfillment on j_order.trade_no = fulfillment.order_id
 left join(select * from dim.sku_cate_zip where dt = '9999-12-31')sku_cate on order_sku.plat_goods_id = sku_cate.plat_sku_id and channel.channel_code = sku_cate.shop_id  -- 填报GMV-各平台店铺按规格业务分类
 left join(
     select order_id,cate from(
         select *,row_number() over (partition by order_id order by type desc) n from (
-            select distinct sub_order_id as order_id,order_cate cate,1 as type from dwd.trd_tb_unpaid_order where dt = '2025-09-04' -- 交易域-淘宝未结算订单数据
+            select distinct sub_order_id as order_id,order_cate cate,1 as type from dwd.trd_tb_unpaid_order where dt = '2025-09-09' -- 交易域-淘宝未结算订单数据
             union
-            select distinct sub_order_id,order_cate,2 as type from dwd.trd_tb_living where dt = '2025-09-04'    -- 订单域-淘宝直播订单
+            select distinct sub_order_id,order_cate,2 as type from dwd.trd_tb_living where dt = '2025-09-09'    -- 订单域-淘宝直播订单
         )tmp
     )t where n =1
     union
-    select distinct order_id,business_cate from dwd.trd_dy_alliance_order where dt = '2025-09-04'  -- 抖音-联盟订单明细
+    select distinct order_id,business_cate from dwd.trd_dy_alliance_order where dt = '2025-09-09'  -- 抖音-联盟订单明细
     union
     SELECT distinct order_id,business_cate FROM ods.tmp_ks_order    -- 临时取数表_单号快手米粉直播间区分业务分类7.6
 )order_cate on order_sku.plat_order_id = order_cate.order_id
 left join(select * from dim.account_cate_zip where dt = '9999-12-31')account_cate on order_sku.plat_author_id = account_cate.account_id -- 账户业务分类
-left join(select * from ods.gyl_product_material_cost where dt = '2025-09-04') product_material on order_sku.goods_no = product_material.product_code
+left join(select * from ods.gyl_product_material_cost where dt = '2025-09-09') product_material on order_sku.trade_no = product_material.order_id and order_sku.goods_no = product_material.product_code and order_sku.sku_cnt = product_material.product_count
 ;
+
+select * from tmp.fulfillment_08;
+
+
+
+select * from rpa_data.product_search_records where store_name in("贝适宝母婴企业店","秋田满满旗舰店","秋田满满味享专卖店")
+
 

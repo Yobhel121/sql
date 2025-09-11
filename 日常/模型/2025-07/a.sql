@@ -138,7 +138,7 @@ left join(
     SELECT distinct order_id,business_cate FROM ods.tmp_ks_order    -- 临时取数表_单号快手米粉直播间区分业务分类7.6
 )order_cate on order_sku.plat_order_id = order_cate.order_id
 left join(select * from dim.account_cate_zip where dt = '9999-12-31')account_cate on order_sku.plat_author_id = account_cate.account_id -- 账户业务分类
-left join(select * from ods.gyl_product_material_cost where dt = '2025-08-06') product_material on order_sku.goods_no = product_material.product_code
+left join(select * from ods.gyl_product_material_cost_07 where dt = '2025-08-06') product_material on order_sku.goods_no = product_material.product_code
 )
 ,tmp2 as(
     select
@@ -299,7 +299,7 @@ CREATE TABLE ods.gyl_product
    dt date comment '分区字段'
 ) COMMENT ='供应链对账-货品成本表';
 
-drop table ods.gyl_product_material_cost;
+drop table ods.gyl_product_material_cost_07;
 CREATE TABLE ods.gyl_product_material_cost
 (
     id                        BIGINT  COMMENT '自增主键ID',
