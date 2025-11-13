@@ -1,0 +1,162 @@
+CREATE TABLE syyz_after_sales_data
+(
+    id                        bigint AUTO_INCREMENT COMMENT '主键id',
+    after_sale_id             varchar(50)  NOT NULL COMMENT '售后编号',
+    store_id                  varchar(50) COMMENT '归属店铺',
+    order_id                  varchar(50)  NOT NULL COMMENT '订单编号',
+    product_sku_code          varchar(100) COMMENT '商品SKU编码',
+    refund_complete_time      timestamp COMMENT '退款完成时间',
+    after_sale_type           varchar(50) COMMENT '售后方式',
+    product_name              varchar(255) COMMENT '商品名称',
+    product_code              varchar(100) COMMENT '商品编码',
+    delivery_company          varchar(100) COMMENT '发货物流公司',
+    delivery_number           varchar(100) COMMENT '发货物流单号',
+    payment_time              timestamp COMMENT '付款时间',
+    transaction_complete_time timestamp COMMENT '交易完成时间',
+    order_amount              decimal(10, 2) COMMENT '订单金额',
+    refund_amount             decimal(10, 2) COMMENT '退款金额',
+    application_time          timestamp COMMENT '申请时间',
+    refund_status             varchar(50) COMMENT '退款资金状态',
+    after_sale_status         varchar(50) COMMENT '售后状态',
+    after_sale_reason         varchar(255) COMMENT '售后原因',
+    delivery_status           varchar(50) COMMENT '发货状态',
+    return_logistics_number   varchar(100) COMMENT '退货物流单号',
+    application_quantity      bigint COMMENT '申请数量',
+    refund_note               varchar COMMENT '退款说明',
+    buyer_phone               varchar(20) COMMENT '买家手机号',
+    operator                  varchar(100) COMMENT '操作人',
+    store_name                varchar(255) COMMENT '店铺名',
+    shop_id                   varchar(255) NOT NULL COMMENT '店铺id',
+    created_by                varchar(100) NOT NULL COMMENT '插入人',
+    created_at                timestamp    NOT NULL DEFAULT '2024-09-18 13:49:02.514' COMMENT '插入时间',
+    updated_by                varchar(100) COMMENT '更新人',
+    updated_at                timestamp    NOT NULL DEFAULT '2024-09-18 13:49:02.514' ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='私域有赞售后单';
+
+CREATE TABLE syyz_business_data_overview
+(
+    id                                bigint AUTO_INCREMENT COMMENT '主键id',
+    biz_day                           timestamp    NOT NULL COMMENT '日期',
+    visit_to_payment_conversion_rate  varchar(50) COMMENT '访问-支付转化率',
+    customer_average_order_value      decimal(10, 2) COMMENT '客单价',
+    page_views                        bigint COMMENT '浏览量',
+    old_customers_transactions        bigint COMMENT '老成交客户数',
+    successful_refund_amount          decimal(10, 2) COMMENT '成功退款金额',
+    refund_rate                       varchar(50) COMMENT '退款率',
+    total_transaction_amount          decimal(20, 2) COMMENT '总成交金额',
+    self_operated_amount              decimal(20, 2) COMMENT '自营金额',
+    distribution_market_supply_amount decimal(20, 2) COMMENT '分销市场供货金额',
+    visitors                          bigint COMMENT '访客数',
+    order_placers                     bigint COMMENT '下单人数',
+    order_count                       bigint COMMENT '下单笔数',
+    order_amount                      decimal(20, 2) COMMENT '下单金额',
+    payment_users                     bigint COMMENT '支付人数',
+    payment_order_count               bigint COMMENT '支付订单数',
+    payment_amount                    decimal(20, 2) COMMENT '支付金额',
+    payment_items                     bigint COMMENT '支付件数',
+    order_to_payment_conversion_rate  varchar(50) COMMENT '下单-支付转化率',
+    new_customers_payment_amount      decimal(20, 2) COMMENT '新成交客户-支付金额',
+    old_customers_payment_amount      decimal(20, 2) COMMENT '老成交客户-支付金额',
+    store_name                        varchar(255) COMMENT '店铺名称',
+    shop_id                           varchar(255) NOT NULL COMMENT '店铺id',
+    created_by                        varchar(100) NOT NULL COMMENT '插入人',
+    created_at                        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by                        varchar(100) COMMENT '更新人',
+    updated_at                        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='私域有赞&线下商城经营数据概况';
+
+CREATE TABLE syyz_distribution_analysis
+(
+    id                     bigint AUTO_INCREMENT COMMENT '主键id',
+    biz_day                timestamp    NOT NULL COMMENT '日期',
+    payment_amount         decimal(10, 2) COMMENT '支付金额',
+    payment_items          bigint COMMENT '支付件数',
+    gross_profit           decimal(10, 2) COMMENT '毛利额',
+    gross_profit_rate      varchar(50) COMMENT '毛利率',
+    promotion_commission   decimal(10, 2) COMMENT '推广佣金',
+    promotion_compensation decimal(10, 2) COMMENT '推广补差金额',
+    store_name             varchar(255) COMMENT '店铺名称',
+    shop_id                varchar(255) NOT NULL COMMENT '店铺id',
+    created_by             varchar(100) NOT NULL COMMENT '插入人',
+    created_at             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by             varchar(100) COMMENT '更新人',
+    updated_at             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='私域有赞分销分析';
+
+CREATE TABLE syyz_procure_order
+(
+    id                             bigint AUTO_INCREMENT COMMENT '主键id',
+    purchase_order_id              varchar(255) COMMENT '采购单ID',
+    status                         varchar(255) NOT NULL COMMENT '采购单状态',
+    Purchase_Order_created_at      timestamp    NOT NULL COMMENT '采购单创建时间',
+    transaction_success_time       timestamp COMMENT '交易成功时间',
+    funds_settlement_status        varchar(255) COMMENT '采购单资金结算状态',
+    supplier_name                  varchar(255) COMMENT '供货商名称',
+    actual_payment_amount          decimal(10, 2) COMMENT '采购单实付金额',
+    shipping_fee                   decimal(10, 2) COMMENT '采购单运费',
+    distribution_promotion_subsidy decimal(10, 2) COMMENT '采购单分销推广补差',
+    distribution_commission        decimal(10, 2) COMMENT '采购单分销推广佣金',
+    distribution_order_id          varchar(255) COMMENT '分销买家单ID',
+    distribution_status            varchar(255) COMMENT '分销买家单状态',
+    distribution_created_at        timestamp COMMENT '分销买家单创建时间',
+    buyer_payment_time             timestamp COMMENT '买家付款时间',
+    total_product_amount           decimal(10, 2) COMMENT '分销买家单商品金额合计',
+    distribution_shipping_fee      decimal(10, 2) COMMENT '分销买家单运费',
+    distribution_payment_amount    decimal(10, 2) COMMENT '分销买家单实付金额',
+    merge_order_id                 varchar(255) COMMENT '合并单号',
+    shop_id                        varchar(255) COMMENT '店铺id',
+    created_by                     varchar(100) NOT NULL COMMENT '插入人',
+    created_at                     timestamp    NOT NULL DEFAULT '2024-09-11 10:46:59.105' COMMENT '插入时间',
+    updated_by                     varchar(100) COMMENT '更新人',
+    updated_at                     timestamp    NOT NULL DEFAULT '2024-09-11 10:46:59.105' ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='私域有赞采购单';
+
+CREATE TABLE syyz_sales_slip
+(
+    id                              bigint AUTO_INCREMENT COMMENT '主键id',
+    order_id                        varchar(50)  NOT NULL COMMENT '订单号',
+    order_type                      varchar(20)  NOT NULL COMMENT '订单类型',
+    order_status                    varchar(20)  NOT NULL COMMENT '订单状态',
+    buyer_payment_time              timestamp COMMENT '买家付款时间',
+    transaction_success_time        timestamp COMMENT '交易成功时间',
+    actual_payment_amount           decimal(10, 2) COMMENT '订单实付金额',
+    all_product_names               varchar COMMENT '全部商品名称',
+    recipient_name                  varchar(100) COMMENT '收货人/提货人',
+    recipient_phone                 varchar(20) COMMENT '收货人手机号/提货人手机号',
+    recipient_province              varchar(50) COMMENT '收货人省份',
+    recipient_city                  varchar(50) COMMENT '收货人城市',
+    recipient_district              varchar(50) COMMENT '收货人地区',
+    buyer_name                      varchar(100) COMMENT '买家姓名',
+    buyer_phone                     varchar(20) COMMENT '买家手机号',
+    refund_status                   varchar(20) COMMENT '订单退款状态',
+    refunded_amount                 decimal(10, 2) COMMENT '订单已退款金额',
+    distribution_promotion_subsidy  decimal(10, 2) COMMENT '分销推广补差',
+    distribution_commission         decimal(10, 2) COMMENT '分销推广佣金',
+    group_sell_commission           varchar(20) COMMENT '群团团帮卖佣金',
+    group_sell_commission_status    varchar(20) COMMENT '群团团佣金结算状态',
+    group_sell_invite_commission    varchar(20) COMMENT '群团团邀请佣金',
+    group_sell_exclusive_commission varchar(20) COMMENT '群团团专属佣金',
+    watercourse                     varchar(20) COMMENT '销售渠道',
+    shop_id                         varchar(255) COMMENT '店铺id',
+    created_by                      varchar(100) NOT NULL COMMENT '插入人',
+    created_at                      timestamp    NOT NULL DEFAULT '2024-09-12 15:54:39.593' COMMENT '插入时间',
+    updated_by                      varchar(100) COMMENT '更新人',
+    updated_at                      timestamp    NOT NULL DEFAULT '2024-09-12 15:54:39.593' ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='私域有赞销售单';
+
+
+
+select '海豚智投-短视频-财务报表',
+       'htzt_finance',
+       COLUMN_NAME,
+       DATA_TYPE,
+       COLUMN_COMMENT,
+       CHARACTER_MAXIMUM_LENGTH
+from INFORMATION_SCHEMA.COLUMNS
+where TABLE_NAME = 'htzt_finance';
+

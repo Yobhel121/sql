@@ -1,0 +1,171 @@
+
+
+CREATE TABLE xhs_dandelion_consumer_discipline
+(
+    id                           bigint AUTO_INCREMENT COMMENT '主键id',
+    biz_day                      timestamp    NOT NULL COMMENT '投放时间',
+    partner_id                   varchar(255) COMMENT '合作id',
+    transaction_amount           decimal(10, 2) COMMENT '交易金额',
+    transaction_type             varchar(255) COMMENT '交易类型',
+    transaction_type_description varchar(255) COMMENT '交易类型描述',
+    partner_name                 varchar(255) COMMENT '合作方的名称',
+    shop_id                      varchar(255) NOT NULL COMMENT '店铺id',
+    created_by                   varchar(100) NOT NULL COMMENT '插入人',
+    created_at                   timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by                   varchar(100) COMMENT '更新人',
+    updated_at                   timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='小红书_蒲公英_消费记录';
+
+CREATE TABLE xhs_estimated_commission_order
+(
+    id                           bigint AUTO_INCREMENT COMMENT '主键id',
+    biz_day                      timestamp    NOT NULL COMMENT '支付时间',
+    order_id                     varchar(50) COMMENT '订单ID',
+    order_status                 varchar(50) COMMENT '订单状态',
+    specification_name           varchar(255) COMMENT '规格名称',
+    specification_id             varchar(50) COMMENT '规格ID',
+    price                        decimal(10, 2) COMMENT '价格',
+    influencer_name              varchar(100) COMMENT '达人名称',
+    influencer_id                varchar(50) COMMENT '达人ID',
+    merchant_received_amount     decimal(10, 2) COMMENT '商家实收金额',
+    user_paid_amount             decimal(10, 2) COMMENT '用户实付金额',
+    refund_amount                decimal(10, 2) COMMENT '退款金额',
+    effective_sales_amount       decimal(10, 2) COMMENT '有效销售金额（计佣金额）',
+    commission_rate              decimal(5, 2) COMMENT '佣金率',
+    estimated_commission_expense decimal(10, 2) COMMENT '预估支出佣金',
+    plan_type                    varchar(50) COMMENT '计划类型',
+    promotion_channel            varchar(100) COMMENT '推广渠道',
+    shop_id                      varchar(255) NOT NULL COMMENT '店铺id',
+    created_by                   varchar(100) NOT NULL COMMENT '插入人',
+    created_at                   timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by                   varchar(100) COMMENT '更新人',
+    updated_at                   timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='小红书预估佣金订单';
+
+CREATE TABLE xhs_order_inquiry
+(
+    id                       bigint AUTO_INCREMENT COMMENT '主键id',
+    biz_day                  timestamp COMMENT '支付时间',
+    order_id                 varchar(50)  NOT NULL COMMENT '订单号',
+    order_status             varchar(50)  NOT NULL COMMENT '订单状态',
+    after_sale_status        varchar(50) COMMENT '售后状态',
+    order_type               varchar(50) COMMENT '订单类型',
+    order_flag               varchar(50) COMMENT '订单标记',
+    recipient_name           varchar(100) COMMENT '收件人姓名',
+    recipient_phone          varchar(20) COMMENT '收件人电话',
+    recipient_address        varchar(255) COMMENT '收件人地址',
+    province                 varchar(50) COMMENT '省',
+    city                     varchar(50) COMMENT '市',
+    district                 varchar(50) COMMENT '区',
+    area_code                varchar(50) COMMENT '区域编码',
+    xiaohongshu_code         varchar(50) COMMENT '小红书编码',
+    barcode                  varchar(50) COMMENT '条形码',
+    specification_id         varchar(255) COMMENT '规格ID',
+    sku_name                 varchar(255) COMMENT 'SKU名称',
+    sku_specification        varchar(255) COMMENT 'SKU规格',
+    sku_quantity             bigint COMMENT 'SKU件数',
+    is_gift                  varchar(15) COMMENT '是否为赠品',
+    invoice                  varchar(20) COMMENT '发票/Invoice',
+    total_price              decimal(10, 2) COMMENT '商品总价(元)',
+    user_paid_amount         decimal(10, 2) COMMENT '用户实付金额(元)',
+    platform_discount        decimal(10, 2)        DEFAULT '0.00' COMMENT '平台优惠(元)',
+    store_discount           decimal(10, 2)        DEFAULT '0.00' COMMENT '店铺优惠(元)',
+    sku_price_change         decimal(10, 2)        DEFAULT '0.00' COMMENT 'SKU商家改价(元)',
+    merchant_received_amount decimal(10, 2) COMMENT '商家实收金额(元)（支付金额）',
+    payment_method           varchar(50) COMMENT '支付方式',
+    payment_terms            varchar(50) COMMENT '支付期数',
+    interest_fee             decimal(10, 2)        DEFAULT '0.00' COMMENT '利息费用',
+    fee_bearer               varchar(50) COMMENT '手续费承担方',
+    sku_net_weight           varchar(20) COMMENT 'sku净重(kg)',
+    package_total_net_weight decimal(10, 2) COMMENT '包裹总净重(kg)',
+    package_total_freight    decimal(10, 2) COMMENT '包裹总运费(元)',
+    express_company          varchar(100) COMMENT '快递公司',
+    express_number           varchar(50) COMMENT '快递单号',
+    paint_marker             varchar(100) COMMENT '大头笔/Paint Marker',
+    express_extend_1         varchar(100) COMMENT '集包地/Express Extend 1',
+    express_extend_2         varchar(100) COMMENT '三段码/Express Extend 2',
+    orderer_id_name          varchar(100) COMMENT '订购人身份证姓名/ID Name',
+    orderer_id_number        varchar(20) COMMENT '订购人身份证号/ID Number',
+    recipient_id_name        varchar(100) COMMENT '收件人身份证姓名',
+    recipient_id_number      varchar(20) COMMENT '收件人身份证号',
+    order_created_at         timestamp COMMENT '订单创建时间',
+    pre_sale_start_time      varchar(255) COMMENT '预售订单开始发货时间',
+    pre_sale_end_time        varchar(255) COMMENT '预售订单截止发货时间',
+    promised_ship_time       timestamp COMMENT '承诺发货时间',
+    shipped_at               timestamp COMMENT '订单发货时间',
+    completed_at             timestamp COMMENT '订单完成时间',
+    shipment_warehouse       varchar(100) NOT NULL COMMENT '发货仓库',
+    confirm_receipt_type     varchar(50) COMMENT '确认收货类型',
+    is_delayed_receipt       varchar(50) COMMENT '是否延迟收货',
+    user_note                varchar(255) COMMENT '用户备注',
+    package_note_flag        varchar(50) COMMENT '包裹备注标记',
+    package_note_info        varchar(255) COMMENT '包裹备注信息',
+    abnormal_reason          varchar(255) COMMENT '异常原因',
+    store_name               varchar(255) NOT NULL COMMENT '店铺名称',
+    user_id                  varchar(50) COMMENT '用户编号',
+    freight_template_name    varchar(255) COMMENT '运费模版名称',
+    logistics_plan_name      varchar(255) COMMENT '物流方案名称',
+    third_party_order_id     varchar(50) COMMENT '第三方机构订单号',
+    shop_id                  varchar(255) NOT NULL COMMENT '店铺id',
+    created_by               varchar(100) NOT NULL COMMENT '插入人',
+    created_at               timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by               varchar(100) COMMENT '更新人',
+    updated_at               timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='小红书订单查询';
+
+CREATE TABLE xhs_spotlight_account_flow
+(
+    id              bigint AUTO_INCREMENT COMMENT '主键id',
+    biz_day         timestamp    NOT NULL COMMENT '投放日期',
+    operation_type  varchar(50) COMMENT '操作类型',
+    business_type   varchar(50) COMMENT '业务类型',
+    fund_type       varchar(50) COMMENT '资金类型',
+    amount_occurred decimal(10, 2) COMMENT '发生金额',
+    balance_after   decimal(10, 2) COMMENT '操作后的账户余额',
+    operation_time  datetime COMMENT '操作发生的具体时间',
+    remark          varchar(255) COMMENT '备注信息',
+    account_name    varchar(255) NOT NULL COMMENT '账号名称',
+    shop_id         varchar(255) NOT NULL COMMENT '店铺id',
+    created_by      varchar(100) NOT NULL COMMENT '插入人',
+    created_at      timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by      varchar(100) COMMENT '更新人',
+    updated_at      timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    account_id      varchar(50) COMMENT '账号ID',
+    PRIMARY KEY (id)
+) COMMENT ='小红书_聚光_账户流水';
+
+CREATE TABLE xhs_cf_account_flow
+(
+    id                     bigint AUTO_INCREMENT COMMENT '主键id',
+    biz_day                datetime COMMENT '投放日期',
+    account_name           varchar(255) COMMENT '账号名称',
+    ad_parent_account_name varchar(255) COMMENT '结算客户名称',
+    operation_type         varchar(50) COMMENT '操作类型',
+    business_type          varchar(50) COMMENT '业务类型',
+    fund_type              varchar(50) COMMENT '资金类型',
+    amount_occurred        decimal(10, 2) COMMENT '发生金额(元)',
+    balance_after          decimal(10, 2) COMMENT '余额(元)',
+    operation_time         timestamp COMMENT '操作时间',
+    remark                 varchar(255) COMMENT '备注',
+    shop_id                varchar(255) NOT NULL COMMENT '店铺id',
+    created_by             varchar(100) NOT NULL COMMENT '插入人',
+    created_at             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by             varchar(100) COMMENT '更新人',
+    updated_at             timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='小红书_乘风_账户流水';
+
+
+
+select '海豚智投-短视频-财务报表',
+       'htzt_finance',
+       COLUMN_NAME,
+       DATA_TYPE,
+       COLUMN_COMMENT,
+       CHARACTER_MAXIMUM_LENGTH
+from INFORMATION_SCHEMA.COLUMNS
+where TABLE_NAME = 'htzt_finance';
+

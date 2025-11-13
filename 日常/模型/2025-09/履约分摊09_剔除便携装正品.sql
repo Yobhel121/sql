@@ -14,7 +14,7 @@ select
     sum(商品成本)  商品成本,
     sum(nvl(重量履约分摊,0)) 履约成本,
     sum(总赠品费用)  赠品费用
-from tmp.fulfillment_08
+from tmp.fulfillment_09
 # where 店铺 like '%折扣店%'
 group by 店铺公司名称,
          战略分级,
@@ -26,5 +26,7 @@ group by 店铺公司名称,
                 when 短视频识别业务分类 in('橱窗','米粉直播间','辅食油直播间','零食直播间','鳕鱼直播间','鳕鱼直播间') then concat(店铺,'(其它)')
             else concat(店铺,'(其它)') end
         else 店铺 end;
+
+
 
 
