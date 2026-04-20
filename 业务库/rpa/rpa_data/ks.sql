@@ -1,4 +1,5 @@
-#*********************************** 快手 ***********************************
+#
+*********************************** 快手 ***********************************
 CREATE TABLE ks_aftersales_bulk_export
 (
     id                         bigint AUTO_INCREMENT COMMENT '主键ID，自增',
@@ -259,14 +260,103 @@ CREATE TABLE ks_short_video_prod_report
     PRIMARY KEY (id)
 ) COMMENT ='短视频推广-商品报表';
 
+CREATE TABLE ks_cljn_living_promotion
+(
+    id                              bigint AUTO_INCREMENT COMMENT '主键ID，自增',
+    shop_id                         varchar(100) COMMENT '店铺id',
+    data_time                       VARCHAR(20) COMMENT '时间',
+    ks_id                           BIGINT COMMENT '快手号id',
+    ks_name                         VARCHAR(100) COMMENT '快手号名称',
+    cost                            DECIMAL(10, 2) COMMENT '花费(元)',
+    daily_gmv                       DECIMAL(12, 2) COMMENT '当日累计GMV',
+    daily_order_count               INT COMMENT '当日累计订单数',
+    daily_roi                       DECIMAL(10, 2) COMMENT '当日累计ROI',
+    daily_order_cost                DECIMAL(10, 2) COMMENT '当日累计订单成本',
+    live_view_count                 INT COMMENT '全站直播间观看数',
+    exposure_count                  INT COMMENT '全站曝光',
+    coupon_order_count              INT COMMENT '智能优惠券订单数',
+    coupon_order_gmv                DECIMAL(12, 2) COMMENT '智能优惠券订单GMV',
+    net_order_amount                DECIMAL(12, 2) COMMENT '全站净成交订单金额',
+    net_roi                         DECIMAL(10, 2) COMMENT '全站净成交ROI',
+    net_order_count                 INT COMMENT '全站当日净成交订单数',
+    direct_amount                   DECIMAL(12, 2) COMMENT '全站直接成交金额',
+    direct_order_count              INT COMMENT '全站直接成交订单数',
+    direct_roi                      DECIMAL(10, 2) COMMENT '全站直接ROI',
+    direct_order_cost               DECIMAL(10, 2) COMMENT '全站直接订单成本',
+    direct_net_amount               DECIMAL(12, 2) COMMENT '全站直接净成交金额',
+    direct_net_order_count          INT COMMENT '全站直接净成交订单数',
+    direct_net_roi                  DECIMAL(10, 2) COMMENT '全站直接净成交ROI',
+    net_rate                        DECIMAL(5, 4) COMMENT '全站净成交率（订单金额）',
+    new_shop_customer_direct        INT COMMENT '直接店铺新客',
+    new_customer_order_count        INT COMMENT '当日新客成交订单量',
+    new_customer_amount             DECIMAL(12, 2) COMMENT '当日新客成交订单金额',
+    coupon_new_shop_customer        INT COMMENT '智能优惠券直接店铺新客',
+    coupon_new_customer_order_count INT COMMENT '智能优惠券当日新客成交订单量',
+    coupon_new_customer_gmv         DECIMAL(12, 2) NULL COMMENT '智能优惠券当日新客GMV',
+    created_by                      varchar(100) NOT NULL COMMENT '插入人',
+    created_at                      timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by                      varchar(100) COMMENT '更新人',
+    updated_at                      timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT='快手-磁力金牛服务商-客户-广告主账户列表-磁力金牛-数据-全站推广-直播推广';
+
+CREATE TABLE ks_cljn_product_promotion
+(
+    id                             bigint AUTO_INCREMENT COMMENT '主键ID，自增',
+    shop_id                        varchar(100) COMMENT '店铺id',
+    data_time                      VARCHAR(20) COMMENT '时间',
+    product_id                     varchar(50) COMMENT '商品id',
+    ks_id                          varchar(50) COMMENT '快手号id',
+    ks_name                        varchar(100) COMMENT '快手号名称',
+    product_name                   varchar(200) COMMENT '商品名称',
+    product_image                  varchar(500) COMMENT '商品主图',
+    cost                           decimal(12, 2) COMMENT '花费',
+    gmv                            decimal(12, 2) COMMENT '全站GMV',
+    roi                            decimal(10, 4) COMMENT '全站ROI',
+    order_count                    int(11) COMMENT '全站订单数',
+    order_cost                     decimal(12, 2) COMMENT '全站订单成本',
+    exposure                       int(11) COMMENT '全站曝光',
+    xiaohuangche_click             int(11) COMMENT '小黄车点击数',
+    product_card_click             int(11) COMMENT '商品卡点击数',
+    coupon_order_count             int(11) COMMENT '智能优惠券订单数',
+    coupon_order_gmv               decimal(12, 2) COMMENT '智能优惠券订单GMV',
+    net_gmv                        decimal(12, 2) COMMENT '全站净成交订单金额',
+    net_roi                        decimal(10, 4) COMMENT '全站净成交ROI',
+    net_order_count                int(11) COMMENT '全站当日净成交订单数',
+    direct_gmv                     decimal(12, 2) COMMENT '全站直接成交金额',
+    direct_order_count             int(11) COMMENT '全站直接成交订单数',
+    direct_roi                     decimal(10, 4) COMMENT '全站直接ROI',
+    direct_order_cost              decimal(12, 2) COMMENT '全站直接订单成本',
+    direct_net_gmv                 decimal(12, 2) COMMENT '全站直接净成交金额',
+    direct_net_order_count         int(11) COMMENT '全站直接净成交订单数',
+    direct_net_roi                 decimal(10, 4) COMMENT '全站直接净成交ROI',
+    net_rate                       varchar(20) COMMENT '全站净成交率（订单金额）',
+    new_visitor_direct             int(11) COMMENT '直接店铺新客',
+    new_visitor_coupon             int(11) COMMENT '智能优惠券直接店铺新客',
+    new_visitor_order_count        int(11) COMMENT '当日新客成交订单量',
+    new_visitor_coupon_order_count int(11) COMMENT '智能优惠券当日新客成交订单量',
+    new_visitor_gmv                decimal(12, 2) COMMENT '当日新客成交订单金额',
+    new_visitor_coupon_gmv         decimal(12, 2) COMMENT '智能优惠券当日新客GMV',
+    created_by                     varchar(100) NOT NULL COMMENT '插入人',
+    created_at                     timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by                     varchar(100) COMMENT '更新人',
+    updated_at                     timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT='快手-磁力金牛服务商-客户-广告主账户列表-磁力金牛-数据-全站推广-商品推广';
 
 
-select '海豚智投-短视频-财务报表',
-       'htzt_finance',
+select '快手-磁力金牛服务商-客户-广告主账户列表-磁力金牛-数据-全站推广-直播推广',
+       'ks_cljn_living_promotion',
        COLUMN_NAME,
        DATA_TYPE,
        COLUMN_COMMENT,
        CHARACTER_MAXIMUM_LENGTH
 from INFORMATION_SCHEMA.COLUMNS
-where TABLE_NAME = 'htzt_finance';
+where TABLE_NAME = 'ks_cljn_living_promotion';
 
+select * from ks_cljn_living_promotion;
+select * from ks_cljn_product_promotion;
+
+
+
+select * from tm_product_statistics;

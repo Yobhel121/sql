@@ -199,14 +199,96 @@ CREATE TABLE pdd_promotion_expenses
     PRIMARY KEY (id)
 ) COMMENT ='拼多多推广费用';
 
+drop table pdd_promotion_data;
+CREATE TABLE IF NOT EXISTS pdd_promotion_data
+(
+    id                          bigint AUTO_INCREMENT COMMENT '主键id',
+    shop_id                     varchar(100) NOT NULL COMMENT '店铺id',
+    biz_day                     varchar(100) COMMENT '日期',
+    product_id                  VARCHAR(100) COMMENT '商品ID',
+    product_name                VARCHAR(255) COMMENT '商品名称',
+    promotion_scene             VARCHAR(100) COMMENT '推广场景',
+    promotion_name              VARCHAR(255) COMMENT '推广名称',
+    bidding_method              VARCHAR(50) COMMENT '出价方式',
+    subset                      VARCHAR(100) COMMENT '分组',
+    is_deleted                  varchar(100) COMMENT '是否已删除',
+    deal_spend                  varchar(100) COMMENT '成交花费(元)',
+    transaction_amount          DECIMAL(15, 2) COMMENT '交易额(元)',
+    actual_roi                  varchar(100) COMMENT '实际投产比',
+    actual_deal_spend           varchar(100) COMMENT '实际成交花费(元)',
+    total_spend                 varchar(100) COMMENT '总花费(元)',
+    net_transaction_amount      DECIMAL(15, 2) COMMENT '净交易额(元)',
+    net_actual_roi              varchar(100) comment '际投产比',
+    net_deal_count              INT COMMENT '净成交笔数',
+    spend_per_net_deal          varchar(100) COMMENT '每笔净成交花费(元)',
+    net_transaction_ratio       varchar(100) COMMENT '净交易额占比',
+    settlement_amount           DECIMAL(15, 2) COMMENT '结算金额(元)',
+    settlement_roi              varchar(100) COMMENT '结算投产比',
+    settlement_count            INT COMMENT '结算笔数',
+    refund_rate                 varchar(100) COMMENT '退款率',
+    chargeback_rate             varchar(100) COMMENT '退单率',
+    refund_exemption_rate       varchar(100) COMMENT '退款豁免率',
+    chargeback_exemption_rate   varchar(100) COMMENT '退单豁免率',
+    transaction_settlement_rate varchar(100) COMMENT '交易额结算率',
+    order_settlement_rate       varchar(100) COMMENT '订单结算率',
+    settlement_order_cost       varchar(100) COMMENT '结算订单成本(元)',
+    deal_count                  INT COMMENT '成交笔数',
+    spend_per_deal              varchar(100) COMMENT '每笔成交花费(元)',
+    amount_per_deal             DECIMAL(15, 2) COMMENT '每笔成交金额(元)',
+    direct_transaction_amount   DECIMAL(15, 2) COMMENT '直接交易额(元)',
+    indirect_transaction_amount DECIMAL(15, 2) COMMENT '间接交易额(元)',
+    direct_deal_count           INT COMMENT '直接成交笔数',
+    indirect_deal_count         INT COMMENT '间接成交笔数',
+    amount_per_direct_deal      DECIMAL(15, 2) COMMENT '每笔直接成交金额(元)',
+    amount_per_indirect_deal    DECIMAL(15, 2) COMMENT '每笔间接成交金额(元)',
+    exposure_count              BIGINT COMMENT '曝光量',
+    click_count                 BIGINT COMMENT '点击量',
+    inquiry_spend               varchar(100) COMMENT '询单花费(元)',
+    inquiry_count               varchar(100) COMMENT '询单量',
+    avg_inquiry_cost            varchar(100) COMMENT '平均询单成本(元)',
+    favorite_spend              varchar(100) COMMENT '收藏花费(元)',
+    favorite_count              varchar(100) COMMENT '收藏量',
+    avg_favorite_cost           varchar(100) COMMENT '平均收藏成本(元)',
+    follow_spend                varchar(100) COMMENT '关注花费(元)',
+    follow_count                varchar(100) COMMENT '关注量',
+    avg_follow_cost             varchar(100) COMMENT '平均关注成本(元)',
+    created_by                  varchar(100) NOT NULL COMMENT '插入人',
+    created_at                  timestamp    NOT NULL DEFAULT current_timestamp COMMENT '插入时间',
+    updated_by                  varchar(100) COMMENT '更新人',
+    updated_at                  timestamp    NOT NULL DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='拼多多-推广工具-报表下载';
+
+drop table rpa_data.pdd_ddjb_promotion_data_detail;
+CREATE TABLE IF NOT EXISTS rpa_data.pdd_ddjb_promotion_data_detail
+(
+    id                           bigint AUTO_INCREMENT COMMENT '主键id',
+    shop_id                      varchar(100) NOT NULL COMMENT '店铺id',
+    promotion_product_id         VARCHAR(100) COMMENT '推广商品ID',
+    deal_date                    DATE COMMENT '成交日期',
+    activity_id                  VARCHAR(100) COMMENT '活动ID',
+    promotion_plan               VARCHAR(255) COMMENT '推广计划',
+    deal_count                   INT COMMENT '成交笔数',
+    deal_amount                  DECIMAL(15, 2) COMMENT '成交金额（元）',
+    estimated_payment_commission DECIMAL(15, 2) COMMENT '预估支付佣金（元）',
+    avg_commission_rate          varchar(100) COMMENT '平均佣金比率',
+    software_service_fee         DECIMAL(15, 2) COMMENT '软件服务费（元）',
+    avg_software_service_rate    varchar(100) COMMENT '平均软件服务费比率',
+    created_by                   varchar(100) NOT NULL COMMENT '插入人',
+    created_at                   timestamp    NOT NULL DEFAULT current_timestamp COMMENT '插入时间',
+    updated_by                   varchar(100) COMMENT '更新人',
+    updated_at                   timestamp    NOT NULL DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='拼多多-多多进宝-推广效果-商品成交数据';
 
 
-select '海豚智投-短视频-财务报表',
-       'htzt_finance',
+select '拼多多-多多进宝-推广效果-商品成交数据',
+       'pdd_ddjb_promotion_data_detail',
        COLUMN_NAME,
        DATA_TYPE,
        COLUMN_COMMENT,
        CHARACTER_MAXIMUM_LENGTH
 from INFORMATION_SCHEMA.COLUMNS
-where TABLE_NAME = 'htzt_finance';
+where TABLE_NAME = 'pdd_ddjb_promotion_data_detail';
+
 

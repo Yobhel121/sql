@@ -1,0 +1,208 @@
+WITH all_data AS
+(
+    SELECT  tradeNo
+            ,tradeOrderAssemblyGoodsDtoList
+    FROM    ods_jky_qm_trades_fullinfo sc
+    LATERAL VIEW JSON_TUPLE(sc.json_str,"response.jackyunData.trades[*].tradeNo","response.jackyunData.trades[*].tradeOrderAssemblyGoodsDtoList") q AS
+            tradeNo
+            ,tradeOrderAssemblyGoodsDtoList
+    WHERE   dt = '20251117'
+    LIMIT   1
+)
+SELECT
+        exploded_tradeNo
+FROM    (
+            SELECT  EXPLODE(SPLIT(REPLACE(REPLACE(REPLACE(tradeOrderAssemblyGoodsDtoList,'[[','['),']]',']'),'],[',']|||['),'\\|\\|\\|')) AS exploded_tradeNo
+            FROM    all_data
+        ) t
+-- SELECT
+--         exploded_tradeNo
+-- FROM    (
+--             SELECT  EXPLODE(SPLIT(REPLACE(REPLACE(REPLACE(tradeOrderAssemblyGoodsDtoList,'[[','['),']]',']'),'],[',']|||['),'\\|\\|\\|')) AS exploded_tradeNo
+--             FROM    all_data
+--         ) t
+-- SELECT
+--         exploded_tradeNo
+-- FROM    (
+--             SELECT  EXPLODE(SPLIT(REGEXP_REPLACE(REGEXP_REPLACE(tradeNo,'^\\[|\\]$',''),'"',''),',')) AS exploded_tradeNo
+--             FROM    all_data
+--         ) t
+;
+
+SELECT  GET_JSON_OBJECT(line_new,'$.apiType')
+        ,GET_JSON_OBJECT(line_new,'$.trandeId')
+        ,GET_JSON_OBJECT(line_new,'$.goodsDetail')
+        ,line_new
+FROM    (
+            SELECT  json_str
+            FROM    ods_jky_qm_trades_fullinfo
+            WHERE   dt = '20251118'
+            LIMIT   1
+        )  -- lateral view explode(split(replace(replace(replace(get_json_object(line,'$.hero'),'[',''),']',''),'},{"hero_type"','}|{"hero_type"'),"\\|")) tf as line_new;
+LATERAL VIEW EXPLODE(
+                     SPLIT(
+                           REPLACE(
+                                   SUBSTRING(GET_JSON_OBJECT(json_str,'$.response.jackyunData.trades'),2,LENGTH(GET_JSON_OBJECT(json_str,'$.response.jackyunData.trades')) - 2)
+                           ,'},{"apiType"','}|||{"apiType"')
+                     ,"\\|\\|\\|")
+) tf AS line_new
+;
+
+
+SELECT
+  CONCAT(
+    '{"response":{"jackyunCode":"200","jackyunContextId":"2347851602780423168","jackyunData":{"scrollId":"e4f9435b8c81dfd035c4b8b05fd2b3c3","trades":[',
+        '{',
+            '"abnormalDescription":"', COALESCE(CAST(abnormalDescription AS STRING), ''), '",',
+            '"accountName":"', COALESCE(CAST(accountName AS STRING), ''), '",',
+            '"activationTime":"', COALESCE(CAST(activationTime AS STRING), ''), '",',
+            '"agentShopName":"', COALESCE(CAST(agentShopName AS STRING), ''), '",',
+            '"allCompassSourceContentType":"', COALESCE(CAST(allCompassSourceContentType AS STRING), ''), '",',
+            '"apiType":"', COALESCE(CAST(apiType AS STRING), ''), '",',
+            '"appendMemo":"', COALESCE(CAST(appendMemo AS STRING), ''), '",',
+            '"assemblyGoodsDetail":', if(assemblyGoodsDetail == '', '[]',assemblyGoodsDetail), ',',
+            '"auditTime":"', COALESCE(CAST(auditTime AS STRING), ''), '",',
+            '"auditor":"', COALESCE(CAST(auditor AS STRING), ''), '",',
+            '"billdate":"', COALESCE(CAST(billdate AS STRING), ''), '",',
+            '"blackList":"', COALESCE(CAST(blackList AS STRING), ''), '",',
+            '"buyerMemo":"', COALESCE(CAST(buyerMemo AS STRING), ''), '",',
+            '"buyerOpenUid":"', COALESCE(CAST(buyerOpenUid AS STRING), ''), '",',
+            '"chargeCurrency":"', COALESCE(CAST(chargeCurrency AS STRING), ''), '",',
+            '"chargeCurrencyCode":"', COALESCE(CAST(chargeCurrencyCode AS STRING), ''), '",',
+            '"chargeExchangeRate":"', COALESCE(CAST(chargeExchangeRate AS STRING), ''), '",',
+            '"checkTotal":"', COALESCE(CAST(checkTotal AS STRING), ''), '",',
+            '"city":"', COALESCE(CAST(city AS STRING), ''), '",',
+            '"cityCode":"', COALESCE(CAST(cityCode AS STRING), ''), '",',
+            '"companyName":"', COALESCE(CAST(companyName AS STRING), ''), '",',
+            '"completeTime":"', COALESCE(CAST(completeTime AS STRING), ''), '",',
+            '"confirmTime":"', COALESCE(CAST(confirmTime AS STRING), ''), '",',
+            '"consignTime":"', COALESCE(CAST(consignTime AS STRING), ''), '",',
+            '"country":"', COALESCE(CAST(country AS STRING), ''), '",',
+            '"countryCode":"', COALESCE(CAST(countryCode AS STRING), ''), '",',
+            '"couponFee":"', COALESCE(CAST(couponFee AS STRING), ''), '",',
+            '"customerAccount":"', COALESCE(CAST(customerAccount AS STRING), ''), '",',
+            '"customerCode":"', COALESCE(CAST(customerCode AS STRING), ''), '",',
+            '"customerDiscount":"', COALESCE(CAST(customerDiscount AS STRING), ''), '",',
+            '"customerDiscountFee":"', COALESCE(CAST(customerDiscountFee AS STRING), ''), '",',
+            '"customerGradeName":"', COALESCE(CAST(customerGradeName AS STRING), ''), '",',
+            '"customerName":"', COALESCE(CAST(customerName AS STRING), ''), '",',
+            '"customerPayment":"', COALESCE(CAST(customerPayment AS STRING), ''), '",',
+            '"customerPostFee":"', COALESCE(CAST(customerPostFee AS STRING), ''), '",',
+            '"customerTags":"', COALESCE(CAST(customerTags AS STRING), ''), '",',
+            '"customerTotalFee":"', COALESCE(CAST(customerTotalFee AS STRING), ''), '",',
+            '"customerTypeName":"', COALESCE(CAST(customerTypeName AS STRING), ''), '",',
+            '"departName":"', COALESCE(CAST(departName AS STRING), ''), '",',
+            '"discountFee":"', COALESCE(CAST(discountFee AS STRING), ''), '",',
+            '"district":"', COALESCE(CAST(district AS STRING), ''), '",',
+            '"estimateVolume":"', COALESCE(CAST(estimateVolume AS STRING), ''), '",',
+            '"estimateWeight":"', COALESCE(CAST(estimateWeight AS STRING), ''), '",',
+            '"extraLogisticNo":"', COALESCE(CAST(extraLogisticNo AS STRING), ''), '",',
+            '"finReceiptTime":"', COALESCE(CAST(finReceiptTime AS STRING), ''), '",',
+            '"finalPayment":"', COALESCE(CAST(finalPayment AS STRING), ''), '",',
+            '"finalPaytime":"', COALESCE(CAST(finalPaytime AS STRING), ''), '",',
+            '"firstPayment":"', COALESCE(CAST(firstPayment AS STRING), ''), '",',
+            '"firstPaytime":"', COALESCE(CAST(firstPaytime AS STRING), ''), '",',
+            '"flagIds":"', COALESCE(CAST(flagIds AS STRING), ''), '",',
+            '"flagNames":"', COALESCE(CAST(flagNames AS STRING), ''), '",',
+            '"freezeReason":"', COALESCE(CAST(freezeReason AS STRING), ''), '",',
+            '"gmtCreate":"', COALESCE(CAST(gmtCreate AS STRING), ''), '",',
+            '"gmtModified":"', COALESCE(CAST(gmtModified AS STRING), ''), '",',
+            '"goodsDetail":', if(goodsDetail == '', '[]',goodsDetail), ',',
+            '"goodsSerial":"', COALESCE(CAST(goodsSerial AS STRING), ''), '",',
+            '"goodsTypeCount":"', COALESCE(CAST(goodsTypeCount AS STRING), ''), '",',
+            '"goodslist":"', COALESCE(CAST(goodslist AS STRING), ''), '",',
+            '"grossProfit":"', COALESCE(CAST(grossProfit AS STRING), ''), '",',
+            '"invoiceAmount":"', COALESCE(CAST(invoiceAmount AS STRING), ''), '",',
+            '"invoiceCode":"', COALESCE(CAST(invoiceCode AS STRING), ''), '",',
+            '"invoiceNo":"', COALESCE(CAST(invoiceNo AS STRING), ''), '",',
+            '"invoiceStatus":"', COALESCE(CAST(invoiceStatus AS STRING), ''), '",',
+            '"invoiceType":"', COALESCE(CAST(invoiceType AS STRING), ''), '",',
+            '"isBillCheck":"', COALESCE(CAST(isBillCheck AS STRING), ''), '",',
+            '"isDelete":"', COALESCE(CAST(isDelete AS STRING), ''), '",',
+            '"isTableSwitch":"', COALESCE(CAST(isTableSwitch AS STRING), ''), '",',
+            '"lastShipTime":"', COALESCE(CAST(lastShipTime AS STRING), ''), '",',
+            '"localCurrencyCode":"', COALESCE(CAST(localCurrencyCode AS STRING), ''), '",',
+            '"localExchangeRate":"', COALESCE(CAST(localExchangeRate AS STRING), ''), '",',
+            '"localPayment":"', COALESCE(CAST(localPayment AS STRING), ''), '",',
+            '"logisticCode":"', COALESCE(CAST(logisticCode AS STRING), ''), '",',
+            '"logisticName":"', COALESCE(CAST(logisticName AS STRING), ''), '",',
+            '"logisticType":"', COALESCE(CAST(logisticType AS STRING), ''), '",',
+            '"mainPostid":"', COALESCE(CAST(mainPostid AS STRING), ''), '",',
+            '"notifyPickTime":"', COALESCE(CAST(notifyPickTime AS STRING), ''), '",',
+            '"onlineTradeNo":"', COALESCE(CAST(onlineTradeNo AS STRING), ''), '",',
+            '"orderNo":"', COALESCE(CAST(orderNo AS STRING), ''), '",',
+            '"otherFee":"', COALESCE(CAST(otherFee AS STRING), ''), '",',
+            '"otherPaymentFees":"', COALESCE(CAST(otherPaymentFees AS STRING), ''), '",',
+            '"packageDetail":', if(packageDetail == '', '[]',packageDetail), ',',
+            '"packageWeight":"', COALESCE(CAST(packageWeight AS STRING), ''), '",',
+            '"payNo":"', COALESCE(CAST(payNo AS STRING), ''), '",',
+            '"payStatus":"', COALESCE(CAST(payStatus AS STRING), ''), '",',
+            '"payTime":"', COALESCE(CAST(payTime AS STRING), ''), '",',
+            '"payType":"', COALESCE(CAST(payType AS STRING), ''), '",',
+            '"payerAddress":"', COALESCE(CAST(payerAddress AS STRING), ''), '",',
+            '"payerBankAccount":"', COALESCE(CAST(payerBankAccount AS STRING), ''), '",',
+            '"payerBankName":"', COALESCE(CAST(payerBankName AS STRING), ''), '",',
+            '"payerName":"', COALESCE(CAST(payerName AS STRING), ''), '",',
+            '"payerPhone":"', COALESCE(CAST(payerPhone AS STRING), ''), '",',
+            '"payerRegno":"', COALESCE(CAST(payerRegno AS STRING), ''), '",',
+            '"payment":"', COALESCE(CAST(payment AS STRING), ''), '",',
+            '"platCompleteTime":"', COALESCE(CAST(platCompleteTime AS STRING), ''), '",',
+            '"postFee":"', COALESCE(CAST(postFee AS STRING), ''), '",',
+            '"preTypedetail":"', COALESCE(CAST(preTypedetail AS STRING), ''), '",',
+            '"qq":',if(qq == '', '{}',qq), ',',
+            '"realFee":"', COALESCE(CAST(realFee AS STRING), ''), '",',
+            '"receivedPostFee":"', COALESCE(CAST(receivedPostFee AS STRING), ''), '",',
+            '"receivedTotal":"', COALESCE(CAST(receivedTotal AS STRING), ''), '",',
+            '"register":"', COALESCE(CAST(register AS STRING), ''), '",',
+            '"reviewTime":"', COALESCE(CAST(reviewTime AS STRING), ''), '",',
+            '"reviewer":"', COALESCE(CAST(reviewer AS STRING), ''), '",',
+            '"seller":"', COALESCE(CAST(seller AS STRING), ''), '",',
+            '"sellerMemo":"', COALESCE(CAST(sellerMemo AS STRING), ''), '",',
+            '"settleAuditTime":"', COALESCE(CAST(settleAuditTime AS STRING), ''), '",',
+            '"shopId":"', COALESCE(CAST(shopId AS STRING), ''), '",',
+            '"shopName":"', COALESCE(CAST(shopName AS STRING), ''), '",',
+            '"shopTypeCode":"', COALESCE(CAST(shopTypeCode AS STRING), ''), '",',
+            '"shopcode":"', COALESCE(CAST(shopcode AS STRING), ''), '",',
+            '"signingTime":"', COALESCE(CAST(signingTime AS STRING), ''), '",',
+            '"sourceAfterNo":"', COALESCE(CAST(sourceAfterNo AS STRING), ''), '",',
+            '"specialReminding":"', COALESCE(CAST(specialReminding AS STRING), ''), '",',
+            '"state":"', COALESCE(CAST(state AS STRING), ''), '",',
+            '"stockoutNo":"', COALESCE(CAST(stockoutNo AS STRING), ''), '",',
+            '"sysFlagIds":"', COALESCE(CAST(sysFlagIds AS STRING), ''), '",',
+            '"taxFee":"', COALESCE(CAST(taxFee AS STRING), ''), '",',
+            '"ticketCodeList":"', COALESCE(CAST(ticketCodeList AS STRING), ''), '",',
+            '"totalFee":"', COALESCE(CAST(totalFee AS STRING), ''), '",',
+            '"town":"', COALESCE(CAST(town AS STRING), ''), '",',
+            '"tradeCount":"', COALESCE(CAST(tradeCount AS STRING), ''), '",',
+            '"tradeFrom":"', COALESCE(CAST(tradeFrom AS STRING), ''), '",',
+            '"tradeId":"', COALESCE(CAST(tradeId AS STRING), ''), '",',
+            '"tradeNo":"', COALESCE(CAST(tradeNo AS STRING), ''), '",',
+            '"tradeOrderColumnExt":{"tradeId":"', COALESCE(tradeordercolumnext_tradeid, ''), '",',
+                '"customizeTradeColumn1":"', COALESCE(tradeordercolumnext_customizetradecolumn1, ''), '",',
+                '"customizeTradeColumn2":"', COALESCE(tradeordercolumnext_customizetradecolumn2, ''), '",',
+                '"customizeTradeColumn3":"', COALESCE(tradeordercolumnext_customizetradecolumn3, ''), '",',
+                '"customizeTradeColumn4":"', COALESCE(tradeordercolumnext_customizetradecolumn4, ''), '",',
+                '"customizeTradeColumn5":"', COALESCE(tradeordercolumnext_customizetradecolumn5, ''), '",',
+                '"customizeTradeColumn6":"', COALESCE(tradeordercolumnext_customizetradecolumn6, ''), '",',
+                '"customizeTradeColumn7":"', COALESCE(tradeordercolumnext_customizetradecolumn7, ''), '",',
+                '"customizeTradeColumn8":"', COALESCE(tradeordercolumnext_customizetradecolumn8, ''), '",',
+                '"customizeTradeColumn9":"', COALESCE(tradeordercolumnext_customizetradecolumn9, ''), '",',
+                '"customizeTradeColumn10":"', COALESCE(tradeordercolumnext_customizetradecolumn10, ''), '"',
+            '},',
+            '"tradeOrderGoodsColumnExts":', if(tradeOrderGoodsColumnExts == '', '[]',tradeOrderGoodsColumnExts), ',',
+            '"tradeOrderPayList":',if(tradeOrderPayList == '', '[]',tradeOrderPayList), ',',
+            '"tradeOrderRefundTime":"', COALESCE(CAST(tradeOrderRefundTime AS STRING), ''), '",',
+            '"tradeStatus":"', COALESCE(CAST(tradeStatus AS STRING), ''), '",',
+            '"tradeStatusExplain":"', COALESCE(CAST(tradeStatusExplain AS STRING), ''), '",',
+            '"tradeTime":"', COALESCE(CAST(tradeTime AS STRING), ''), '",',
+            '"tradeType":"', COALESCE(CAST(tradeType AS STRING), ''), '",',
+            '"warehouseCode":"', COALESCE(CAST(warehouseCode AS STRING), ''), '",',
+            '"warehouseName":"', COALESCE(CAST(warehouseName AS STRING), ''), '",',
+            '"zip":"', COALESCE(CAST(zip AS STRING), ''), '"',
+        '}',
+    ']},"jackyunFlag":"success","jackyunMessage":"success"}}'
+  ) as json_result,
+  HOUR(gmtmodified),
+  HOUR(gmtmodified)
+FROM tmp_qm_trades_fullinfo
+limit 10;

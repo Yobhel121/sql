@@ -1,4 +1,5 @@
-#*********************************** 其它 ***********************************
+#
+*********************************** 其它 ***********************************
 
 CREATE TABLE mx_ai_inventory_marketing_order
 (
@@ -55,7 +56,7 @@ CREATE TABLE rpa_data.rdy_order_info
 (
     id                              bigint AUTO_INCREMENT COMMENT '主键ID，自增',
     shop_id                         VARCHAR COMMENT '店铺ID',
-    shop_name                      VARCHAR(200) COMMENT '店铺名称',
+    shop_name                       VARCHAR(200) COMMENT '店铺名称',
     order_id                        VARCHAR(50) COMMENT '订单号',
     product_name                    VARCHAR(255) COMMENT '商品名称',
     product_id                      VARCHAR(50) COMMENT '商品id',
@@ -97,7 +98,8 @@ CREATE TABLE rpa_data.rdy_order_info
     created_at                      timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
     updated_by                      varchar COMMENT '更新人',
     updated_at                      timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='热度云-订单-视频号-订单查询';
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='热度云-订单-视频号-订单查询';
 
 CREATE TABLE rpa_data.htzt_finance
 (
@@ -137,16 +139,66 @@ CREATE TABLE rpa_data.htzt_finance
     created_at                 timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
     updated_by                 varchar COMMENT '更新人',
     updated_at                 timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='海豚智投-短视频-财务报表';
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='海豚智投-短视频-财务报表';
 
+drop table htzt_ad_performance;
+CREATE TABLE htzt_ad_performance
+(
+    id                             bigint AUTO_INCREMENT primary key COMMENT '主键ID，自增',
+    shop_id                        VARCHAR(200) COMMENT '店铺ID',
+    stat_date                      DATE COMMENT '日期',
+    product_name                   VARCHAR(255) COMMENT '商品名称',
+    product_id                     VARCHAR(100) COMMENT '商品ID',
+    planned_count                  INT COMMENT '计划数',
+    approved_plan_count            INT COMMENT '过审计划数',
+    real_occupied_funds            DECIMAL(15, 2) COMMENT '真实占用资金',
+    total_investment_amount        DECIMAL(15, 2) COMMENT '总投放金额',
+    cumulative_consumption_amount  DECIMAL(15, 2) COMMENT '累计消耗金额',
+    cumulative_consumption_ratio   DECIMAL(10, 4) COMMENT '累计消耗比例',
+    wechat_bean_payment_amount     DECIMAL(15, 2) COMMENT '微信豆支付金额',
+    wechat_bean_refund_amount      DECIMAL(15, 2) COMMENT '微信豆退款金额',
+    wechat_bean_consumption_amount DECIMAL(15, 2) COMMENT '微信豆消耗金额',
+    transaction_roi                DECIMAL(10, 4) COMMENT '成交ROI',
+    compensation_roi               DECIMAL(10, 4) COMMENT '赔付ROI',
+    transaction_order_count        INT COMMENT '成交订单数',
+    transaction_order_amount       DECIMAL(15, 2) COMMENT '成交订单金额（元）',
+    coupon_deduction_amount        DECIMAL(15, 2) COMMENT '优惠券抵扣金额',
+    returned_coupon_amount         DECIMAL(15, 2) COMMENT '退回优惠券金额',
+    consumed_coupon_amount         DECIMAL(15, 2) COMMENT '消耗优惠券金额',
+    compensation_coupon_amount     DECIMAL(15, 2) COMMENT '赔付优惠券金额',
+    product_click_count            INT COMMENT '商品点击次数',
+    view_count                     INT COMMENT '浏览数',
+    like_count                     INT COMMENT '点赞数',
+    comment_count                  INT COMMENT '评论数',
+    follow_count                   INT COMMENT '关注数',
+    share_count                    INT COMMENT '转发数',
+    favorite_count                 INT COMMENT '收藏数',
+    live_booking_count             INT COMMENT '预约直播人数',
+    component_click_count          INT COMMENT '组件点击数',
+    product_click_rate             DECIMAL(10, 4) COMMENT '商品点击率',
+    click_conversion_rate          DECIMAL(10, 4) COMMENT '点击成交率',
+    cost_per_thousand_impressions  DECIMAL(10, 4) COMMENT '千展成本',
+    click_cost                     DECIMAL(10, 4) COMMENT '点击成本',
+    conversion_cost                DECIMAL(10, 4) COMMENT '转化成本',
+    follow_cost                    DECIMAL(10, 4) COMMENT '关注成本',
+    created_by                     varchar(200) COMMENT '插入人',
+    created_at                     timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by                     varchar(200) COMMENT '更新人',
+    updated_at                     timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+) COMMENT ='海豚智投-短视频-数据报表-运营报表-商品';
 
-
-select '海豚智投-短视频-财务报表',
-       'htzt_finance',
+select '海豚智投-短视频-数据报表-运营报表-商品',
+       'htzt_ad_performance',
        COLUMN_NAME,
        DATA_TYPE,
        COLUMN_COMMENT,
        CHARACTER_MAXIMUM_LENGTH
 from INFORMATION_SCHEMA.COLUMNS
-where TABLE_NAME = 'htzt_finance';
+where TABLE_NAME = 'htzt_ad_performance';
+
+select *
+from htzt_ad_performance;
+
+
 

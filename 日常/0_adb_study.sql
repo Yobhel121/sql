@@ -434,17 +434,30 @@ select * from INFORMATION_SCHEMA.PARTITIONS where TABLE_SCHEMA = 'dwd';
 
 
 # step1
-ALTER TABLE ods.jky_erp_storage_goodsdocout_v2_goodsdocdetail partitions 30;
-ALTER TABLE ods.jky_erp_storage_goodsdocout_v2_goodsdocdetail STORAGE_POLICY='MIXED' HOT_PARTITION_COUNT=7;
+ALTER TABLE ods.jky_qm_trades_fullinfo_goodsdetail_packagedetail partitions 7;
+ALTER TABLE ods.jky_qm_trades_fullinfo_goodsdetail_packagedetail STORAGE_POLICY='MIXED' HOT_PARTITION_COUNT=3;
 # step2
-BUILD TABLE ods.jky_erp_storage_goodsdocout_v2_goodsdocdetail;
+BUILD TABLE ods.jky_qm_trades_fullinfo_goodsdetail_packagedetail;
 # 查看进度
 SELECT table_name, schema_name, status
 FROM INFORMATION_SCHEMA.KEPLER_META_BUILD_TASK
+where status = 'RUNNING'
 ORDER BY create_time DESC
 LIMIT 10;
 # 查看表ddl修改
 show create table ods.jky_qm_trades_fullinfo_goodsdetail;
+
+
+select count(1) from dws.dws_sales_gsv_daily_ft_zk;
+
+
+show create table ods.zzy_etl_task;
+
+
+select count(1) from ods.zzy_etl_task;
+
+
+select count(1) from zzy.etl_task;
 
 
 

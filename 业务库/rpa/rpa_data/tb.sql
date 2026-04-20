@@ -905,8 +905,8 @@ CREATE TABLE rpa_data.tb_qn_financial_records
     payment_serial_no VARCHAR(64) COMMENT '支付流水号',
     taobao_order_no   VARCHAR(64) COMMENT '淘宝订单编号',
     entry_type        VARCHAR(32) COMMENT '入账类型',
-    income_amount     DECIMAL(15, 2) DEFAULT 0.00 COMMENT '收入金额（元）',
-    expense_amount    DECIMAL(15, 2) DEFAULT 0.00 COMMENT '支出金额（元）',
+    income_amount     DECIMAL(15, 2) DEFAULT 0 COMMENT '收入金额（元）',
+    expense_amount    DECIMAL(15, 2) DEFAULT 0 COMMENT '支出金额（元）',
     business_desc     VARCHAR(500) COMMENT '业务描述',
     remarks           VARCHAR(1000) COMMENT '备注',
     created_by        varchar(100) COMMENT '插入人',
@@ -916,6 +916,7 @@ CREATE TABLE rpa_data.tb_qn_financial_records
     PRIMARY KEY (id)
 ) COMMENT ='淘宝-千牛-财务-资金管理-聚合结算账户-收支明细';
 
+drop table rpa_data.tb_sycm_product_performance;
 CREATE TABLE rpa_data.tb_sycm_product_performance
 (
     id                      INT AUTO_INCREMENT COMMENT '主键ID',
@@ -930,10 +931,10 @@ CREATE TABLE rpa_data.tb_sycm_product_performance
     leaf_category_id        varchar COMMENT '叶子类目ID',
     group_type              VARCHAR(50) COMMENT '团型',
     activity_name           VARCHAR(200) COMMENT '活动名称',
-    product_ipv             INT COMMENT '商品ipv',
-    product_uv              INT COMMENT '商品访客数',
+    product_ipv             varchar(100) COMMENT '商品ipv',
+    product_uv              varchar(100) COMMENT '商品访客数',
     payment_amount          varchar COMMENT '支付金额',
-    burst_factor            DECIMAL(10, 4) COMMENT '爆发系数',
+    burst_factor            varchar(100) COMMENT '爆发系数',
     payment_buyers          varchar(255) COMMENT '支付买家数',
     sub_orders              varchar COMMENT '子订单数',
     transaction_quantity    varchar COMMENT '成交件数',
@@ -995,48 +996,126 @@ CREATE TABLE rpa_data.tb_qn_fund_flow_records
     PRIMARY KEY (id)
 ) COMMENT ='资金流水记录表';
 
-
-
-CREATE TABLE financial_billing_details
+CREATE TABLE tb_qn_financial_billing_details
 (
-    id                       INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键ID',
-    account_period           VARCHAR(20) COMMENT '账期（格式：YYYY-MM）',
-    fund_direction           VARCHAR(10) COMMENT '资金方向：收入/支出',
-    bill_category            VARCHAR(50) COMMENT '账单大类',
-    business_main_category   VARCHAR(50) COMMENT '业务大类',
-    business_sub_category    VARCHAR(50) COMMENT '业务小类',
-    expense_item             VARCHAR(100) COMMENT '支出项目',
-    main_order_no            VARCHAR(100) COMMENT '交易主订单号',
-    sub_order_no             VARCHAR(100) COMMENT '交易子订单号',
-    order_date               DATE COMMENT '订单日期',
-    product_name             VARCHAR(500) COMMENT '商品名称',
-    quantity                 INT COMMENT '数量',
-    unit_price               DECIMAL(15, 4) .0000 COMMENT '单价',
-    transaction_amount       DECIMAL(15, 2) .00 COMMENT '扣费交易金额',
-    commission_rate          DECIMAL(8, 4) .0000 COMMENT '佣金率',
-    expense_amount           DECIMAL(15, 2) .00 COMMENT '支出金额（元）',
-    deduction_date           DATE COMMENT '扣费日期',
-    alipay_merchant_order_no VARCHAR(100) COMMENT '支付宝商户订单号',
-    application_id           VARCHAR(100) COMMENT '报名ID',
-    payment_channel_desc     VARCHAR(200) COMMENT '收/付渠道描述',
-    deduction_amount         DECIMAL(15, 2) .00 COMMENT '扣费金额（元）',
-    refund_amount            DECIMAL(15, 2) .00 COMMENT '退款金额（元）',
-    confirm_receipt_date     DATE COMMENT '确认收货日期'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='财务账单明细表';
+    id                         INT AUTO_INCREMENT COMMENT '主键ID',
+    shop_id                    BIGINT COMMENT '店铺id',
+    `account_period`           VARCHAR(50) COMMENT '账期',
+    `fund_direction`           VARCHAR(20) COMMENT '资金方向',
+    `bill_category`            VARCHAR(50) COMMENT '账单大类',
+    `business_category`        VARCHAR(50) COMMENT '业务大类',
+    `business_subcategory`     VARCHAR(50) COMMENT '业务小类',
+    `expense_item`             VARCHAR(100) COMMENT '支出项目',
+    `main_order_no`            VARCHAR(100) COMMENT '交易主订单号',
+    `sub_order_no`             VARCHAR(100) COMMENT '交易子订单号',
+    `order_date`               varchar(100) COMMENT '订单日期',
+    `product_name`             VARCHAR(200) COMMENT '商品名称',
+    `quantity`                 varchar(100) COMMENT '数量',
+    `unit_price`               varchar(100) COMMENT '单价',
+    `deducted_amount`          varchar(100) COMMENT '扣费交易金额',
+    `commission_rate`          varchar(100) COMMENT '佣金率',
+    `expense_amount`           varchar(100) COMMENT '支出金额（元）',
+    `deduction_date`           varchar(100) COMMENT '扣费日期',
+    `alipay_merchant_order_no` VARCHAR(100) COMMENT '支付宝商户订单号',
+    `registration_id`          VARCHAR(100) COMMENT '报名id',
+    `payment_channel_desc`     VARCHAR(100) COMMENT '收/付渠道描述',
+    `deduction_amount`         varchar(100) COMMENT '扣费金额（元）',
+    `refund_amount`            varchar(100) COMMENT '退款金额（元）',
+    `confirm_receipt_date`     varchar(100) COMMENT '确认收货日期',
+    created_by                 varchar(100) COMMENT '插入人',
+    created_at                 timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by                 varchar(100) COMMENT '更新人',
+    updated_at                 timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='淘宝-千牛-财务-收支账单-支出账单-支出明细';
+
+CREATE TABLE IF NOT EXISTS tb_qn_shop_donations
+(
+    id              INT AUTO_INCREMENT COMMENT '主键ID',
+    shop_id         BIGINT COMMENT '店铺id',
+    biz_day         DATE COMMENT '日期',
+    donation_amount DECIMAL(12, 2) COMMENT '捐赠金额（单位：分）',
+    created_by      varchar(100) COMMENT '插入人',
+    created_at      timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by      varchar(100) COMMENT '更新人',
+    updated_at      timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='淘宝-千牛-店铺服务-商家公益';
+
+
+CREATE TABLE tb_tmux_activity_performance
+(
+    id                    bigint(20)  NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    shop_id         BIGINT COMMENT '店铺id',
+    biz_day         DATE COMMENT '日期',
+    play_mode             varchar(50) COMMENT '玩法',
+    activity_name         varchar(200) COMMENT '活动名称',
+    shop_name             varchar(200) COMMENT '店铺名称',
+    ju_id                 varchar(50) COMMENT 'juId',
+    product_id            varchar(50) NOT NULL COMMENT '商品ID',
+    product_title         varchar(500) COMMENT '商品标题',
+    shop_price            decimal(10, 2) COMMENT '店铺价格',
+    activity_price        decimal(10, 2) COMMENT '活动价格',
+    trial_start_time      datetime COMMENT '试用开始时间',
+    trial_end_time        datetime COMMENT '试用结束时间',
+    activity_status       varchar(20) COMMENT '活动状态',
+    signup_total          int(11) COMMENT '报名总量',
+    receive_uv            int(11) COMMENT '领取UV',
+    dispatch_rate         decimal(5, 2) COMMENT '派发率',
+    exposure_pv           int(11) COMMENT '曝光PV',
+    shop_enter_pv         int(11) COMMENT '进店PV',
+    new_customers         int(11) COMMENT '店铺新客数',
+    new_followers         int(11) COMMENT '新增粉丝数',
+    new_members           int(11) COMMENT '店铺新会员数',
+    return_uv_7d          int(11) COMMENT '7天靠店UV',
+    return_uv_15d         int(11) COMMENT '15天靠店UV',
+    return_uv_30d         int(11) COMMENT '30天靠店UV',
+    return_uv_60d         int(11) COMMENT '60天靠店UV',
+    return_uv_90d         int(11) COMMENT '90天靠店UV',
+    repurchase_uv_7d      int(11) COMMENT '7天回购UV',
+    repurchase_uv_15d     int(11) COMMENT '15天回购UV',
+    repurchase_uv_30d     int(11) COMMENT '30天回购UV',
+    repurchase_uv_60d     int(11) COMMENT '60天回购UV',
+    repurchase_uv_90d     int(11) COMMENT '90天回购UV',
+    return_rate_7d        decimal(5, 2) COMMENT '7天靠店率',
+    return_rate_15d       decimal(5, 2) COMMENT '15天靠店率',
+    return_rate_30d       decimal(5, 2) COMMENT '30天靠店率',
+    return_rate_60d       decimal(5, 2) COMMENT '60天靠店率',
+    return_rate_90d       decimal(5, 2) COMMENT '90天靠店率',
+    repurchase_rate_7d    decimal(5, 2) COMMENT '7天回购率',
+    repurchase_rate_15d   decimal(5, 2) COMMENT '15天回购率',
+    repurchase_rate_30d   decimal(5, 2) COMMENT '30天回购率',
+    repurchase_rate_60d   decimal(5, 2) COMMENT '60天回购率',
+    repurchase_rate_90d   decimal(5, 2) COMMENT '90天回购率',
+    repurchase_amount_7d  decimal(10, 2) COMMENT '7天回购支付金额',
+    repurchase_amount_15d decimal(10, 2) COMMENT '15天回购支付金额',
+    repurchase_amount_30d decimal(10, 2) COMMENT '30天回购支付金额',
+    repurchase_amount_60d decimal(10, 2) COMMENT '60天回购支付金额',
+    repurchase_amount_90d decimal(10, 2) COMMENT '90天回购支付金额',
+    created_by            varchar(100) COMMENT '插入人',
+    created_at            timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+    updated_by            varchar(100) COMMENT '更新人',
+    updated_at            timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (id)
+) COMMENT ='淘宝-U先试用';
 
 
 
-select '淘宝-生意参谋-品类-百亿补贴(新)-商品汇总',
-       'tb_sycm_product_sales_stats',
+
+select '淘宝-U先试用',
+       'tb_tmux_activity_performance',
        COLUMN_NAME,
        DATA_TYPE,
        COLUMN_COMMENT,
        CHARACTER_MAXIMUM_LENGTH
 from INFORMATION_SCHEMA.COLUMNS
-where TABLE_NAME = 'tb_sycm_product_sales_stats';
+where TABLE_NAME = 'tb_tmux_activity_performance';
 
+select * from tb_tmux_activity_performance;
 
 select *
-from rpa_data.rdy_order_info order by  order_time desc ;
+from rpa_data.rdy_order_info
+order by order_time desc;
+
+
 
